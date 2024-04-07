@@ -44,7 +44,6 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
       serviceBinds: [
         {
           serviceId: containerAppEnvironment.outputs.postgresId
-          name: 'pgsql-xprtzbv-cms'
         }
       ]
       containers: [
@@ -91,6 +90,44 @@ resource pgsqlCli 'Microsoft.App/containerApps@2023-04-01-preview' = {
           name: 'psql'
           image: 'mcr.microsoft.com/k8se/services/postgres:14'
           command: [ '/bin/sleep', 'infinity' ]
+        }
+      ]
+      scale: {
+        minReplicas: 1
+        maxReplicas: 1
+      }
+    }
+  }
+}
+
+resource pgweb 'Microsoft.App/containerApps@2023-04-01-preview' = {
+  name: 'pgweb'
+  location: location
+  properties: {
+    environmentId: containerAppEnvironment.outputs.containerAppEnvironmentId
+    configuration: {
+      ingress: {
+        external: true
+        targetPort: 8081
+      }
+    }
+    template: {
+      serviceBinds: [
+        {
+          serviceId: containerAppEnvironment.outputs.postgresId
+        }
+      ]
+      containers: [
+        {
+          name: 'pgweb'
+          image: 'docker.io/sosedoff/pgweb:latest'
+          command: [
+            '/bin/sh'
+          ]
+          args: [
+            '-c'
+            'PGWEB_DATABASE_URL=$POSTGRES_URL /usr/bin/pgweb --bind=0.0.0.0 --listen=8081'
+          ]
         }
       ]
       scale: {
