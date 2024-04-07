@@ -6,6 +6,7 @@ param imageTag string = 'latest'
 var resourceGroupName = 'rg-xprtzbv-website'
 var containerAppIdentityName = 'id-xprtzbv-website'
 var frontDoorEndpointName = 'fde-xprtzbv-cms'
+var logAnalyticsWorkspaceName = 'log-xprtzbv-website'
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' existing = {
   name: resourceGroupName
@@ -16,13 +17,14 @@ resource containerAppIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@
   name: containerAppIdentityName
 }
 
-module containerAppCms 'modules/container-app-website.bicep' = {
+module containerAppCms 'modules/container-app-cms.bicep' = {
   scope: resourceGroup
   name: 'Deploy-Container-App-Cms'
   params: {
     location: location
     containerAppUserAssignedIdentityResourceId: containerAppIdentity.id
     containerAppUserAssignedIdentityClientId: containerAppIdentity.properties.clientId
+    logAnalyticsWorkspaceName: logAnalyticsWorkspaceName
     imageTag: imageTag
   }
 }

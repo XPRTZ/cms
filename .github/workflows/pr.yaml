@@ -17,7 +17,7 @@ jobs:
     if: github.event.action != 'closed'
     steps:
       - name: Azure login
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
@@ -46,8 +46,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Deploy website
-        uses: azure/arm-deploy@v1
+      - name: Deploy cms
+        uses: azure/arm-deploy@v2
         with:
           scope: subscription
           region: westeurope
@@ -63,7 +63,7 @@ jobs:
     if: github.event.action == 'closed'
     steps:
       - name: Azure login
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
@@ -75,8 +75,8 @@ jobs:
           slug-maxlength: 11
 
       - name: Remove container app
-        uses: azure/CLI@v1
+        uses: azure/CLI@v2
         with:
           azcliversion: latest
           inlineScript: |
-            az containerapp delete -g rg-xprtzbv-cms -n ctap-xprtzbv-cms-${{ env.GITHUB_REF_NAME_SLUG }} -y
+            az containerapp delete -g rg-xprtzbv-website -n ctap-xprtzbv-cms-${{ env.GITHUB_REF_NAME_SLUG }} -y
