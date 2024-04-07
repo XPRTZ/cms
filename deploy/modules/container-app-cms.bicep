@@ -44,7 +44,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
       serviceBinds: [
         {
           serviceId: containerAppEnvironment.outputs.postgresId
-          name: 'postgres'
+          name: 'pgsql-xprtzbv-cms'
         }
       ]
       containers: [
@@ -70,6 +70,32 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
       scale: {
        minReplicas: 1
        maxReplicas: 10
+      }
+    }
+  }
+}
+
+resource pgsqlCli 'Microsoft.App/containerApps@2023-04-01-preview' = {
+  name: 'pgsql-cli'
+  location: location
+  properties: {
+    environmentId: containerAppEnvironment.outputs.containerAppEnvironmentId
+    template: {
+      serviceBinds: [
+        {
+          serviceId: containerAppEnvironment.outputs.postgresId
+        }
+      ]
+      containers: [
+        {
+          name: 'psql'
+          image: 'mcr.microsoft.com/k8se/services/postgres:14'
+          command: [ '/bin/sleep', 'infinity' ]
+        }
+      ]
+      scale: {
+        minReplicas: 1
+        maxReplicas: 1
       }
     }
   }
