@@ -60,6 +60,10 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
               name: 'AZURE_CLIENT_ID'
               value: containerAppUserAssignedIdentityClientId
             }
+            {
+              name: 'NODE_ENV'
+              value: 'production'
+            }
           ]
         }
       ]

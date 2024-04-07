@@ -41,6 +41,8 @@ jobs:
           push: true
           tags: ${{ secrets.REGISTRY_NAME }}.azurecr.io/cms:${{ env.GITHUB_REF_NAME_SLUG }}
           file: ./Dockerfile.prod
+          build-args: |
+            NODE_ENV=production
 
       - uses: actions/checkout@main
         with:
