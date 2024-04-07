@@ -54,7 +54,7 @@ jobs:
           push: true
           tags: ${{ secrets.REGISTRY_NAME }}.azurecr.io/cms:latest
 
-      - name: Deploy website
+      - name: Deploy cms
         uses: azure/arm-deploy@v1
         with:
           scope: subscription
@@ -95,7 +95,7 @@ jobs:
           template: ./deploy/infrastructure.bicep
           failOnStdErr: false
 
-      - name: Deploy website
+      - name: Deploy cms
         uses: azure/arm-deploy@v1
         with:
           scope: subscription
