@@ -24,9 +24,7 @@ module keyVault 'modules/key-vault.bicep' = {
   params: {
     location: location
     keyVaultName: keyVaultName
-    containerAppUserAssignedIdentityResourceIds: [
-      containerAppIdentity.id
-    ]
+    containerAppUserAssignedIdentityClientIds: [ containerAppIdentity.properties.clientId ]
   }
 }
 

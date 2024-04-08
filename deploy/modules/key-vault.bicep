@@ -1,6 +1,6 @@
 param location string
 param keyVaultName string
-param containerAppUserAssignedIdentityResourceIds array
+param containerAppUserAssignedIdentityClientIds array
 
 resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
   name: keyVaultName
@@ -20,7 +20,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
 
 var keyVaultSecretsUser = loadJsonContent('../buildin-roles.json').keyVault.secretsUser
 
-resource keyVaultSecretUsers 'Microsoft.Authorization/roleAssignments@2022-04-01' = [for id in containerAppUserAssignedIdentityResourceIds: {
+resource keyVaultSecretUsers 'Microsoft.Authorization/roleAssignments@2022-04-01' = [for id in containerAppUserAssignedIdentityClientIds: {
   scope: keyVault
   name: guid(id, keyVault.id, keyVaultSecretsUser)
   properties: {
