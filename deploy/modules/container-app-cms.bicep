@@ -1,4 +1,5 @@
 param location string
+param keyVaultName string
 param containerAppUserAssignedIdentityResourceId string
 param containerAppUserAssignedIdentityClientId string
 param logAnalyticsWorkspaceName string
@@ -8,6 +9,10 @@ var name = take('ctap-xprtzbv-cms-${imageTag}', 32)
 
 var acrServer = 'xprtzbv.azurecr.io'
 var imageName = '${acrServer}/cms:${imageTag}'
+
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+  name: keyVaultName
+}
 
 module containerAppEnvironment 'container-app-environment.bicep' = {
   name: 'Deploy-Container-App-Environment'
@@ -39,6 +44,33 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
         external: true
         targetPort: 1337
       }
+      secrets: [
+        {
+          name: 'REF_APP_KEYS'
+          keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/APP-KEYS'
+          identity: containerAppUserAssignedIdentityResourceId
+        }
+        {
+          name: 'REF_API_TOKEN_SALT'
+          keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/API-TOKEN-SALT'
+          identity: containerAppUserAssignedIdentityResourceId
+        }
+        {
+          name: 'REF_ADMIN_JWT_SECRET'
+          keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/ADMIN-JWT-SECRET'
+          identity: containerAppUserAssignedIdentityResourceId
+        }
+        {
+          name: 'REF_TRANSFER_TOKEN_SALT'
+          keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/TRANSFER-TOKEN-SALT'
+          identity: containerAppUserAssignedIdentityResourceId
+        }
+        {
+          name: 'REF_JWT_SECRET'
+          keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/JWT-SECRET'
+          identity: containerAppUserAssignedIdentityResourceId
+        }
+      ]
     }
     template: {
       serviceBinds: [
@@ -63,12 +95,36 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
               name: 'NODE_ENV'
               value: 'production'
             }
+            {
+              name: 'PORT'
+              value: '1337'
+            }
+            {
+              name: 'APP_KEYS'
+              secretRef: 'REF_APP_KEYS'
+            }
+            {
+              name: 'API_TOKEN_SALT'
+              secretRef: 'REF_API_TOKEN_SALT'
+            }
+            {
+              name: 'ADMIN_JWT_SECRET'
+              secretRef: 'REF_ADMIN_JWT_SECRET'
+            }
+            {
+              name: 'TRANSFER_TOKEN_SALT'
+              secretRef: 'REF_TRANSFER_TOKEN_SALT'
+            }
+            {
+              name: 'JWT_SECRET'
+              secretRef: 'REF_JWT_SECRET'
+            }
           ]
         }
       ]
       scale: {
        minReplicas: 1
-       maxReplicas: 10
+       maxReplicas: 1
       }
     }
   }
