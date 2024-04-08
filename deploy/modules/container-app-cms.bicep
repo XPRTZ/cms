@@ -46,27 +46,27 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
       }
       secrets: [
         {
-          name: 'REF-APP-KEYS'
+          name: toLower('REF-APP-KEYS')
           keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/APP-KEYS'
           identity: containerAppUserAssignedIdentityResourceId
         }
         {
-          name: 'REF-API-TOKEN-SALT'
+          name: toLower('REF-API-TOKEN-SALT')
           keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/API-TOKEN-SALT'
           identity: containerAppUserAssignedIdentityResourceId
         }
         {
-          name: 'REF-ADMIN-JWT-SECRET'
+          name: toLower('REF-ADMIN-JWT-SECRET')
           keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/ADMIN-JWT-SECRET'
           identity: containerAppUserAssignedIdentityResourceId
         }
         {
-          name: 'REF-TRANSFER-TOKEN-SALT'
+          name: toLower('REF-TRANSFER-TOKEN-SALT')
           keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/TRANSFER-TOKEN-SALT'
           identity: containerAppUserAssignedIdentityResourceId
         }
         {
-          name: 'REF-JWT-SECRET'
+          name: toLower('REF-JWT-SECRET')
           keyVaultUrl: '${keyVault.properties.vaultUri}/secrets/JWT-SECRET'
           identity: containerAppUserAssignedIdentityResourceId
         }
@@ -101,23 +101,23 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'APP_KEYS'
-              secretRef: 'REF-APP-KEYS'
+              secretRef: toLower('REF-APP-KEYS')
             }
             {
               name: 'API_TOKEN_SALT'
-              secretRef: 'REF-API-TOKEN-SALT'
+              secretRef: toLower('REF-API-TOKEN-SALT')
             }
             {
               name: 'ADMIN_JWT_SECRET'
-              secretRef: 'REF-ADMIN-JWT-SECRET'
+              secretRef: toLower('REF-ADMIN-JWT-SECRET')
             }
             {
               name: 'TRANSFER_TOKEN_SALT'
-              secretRef: 'REF-TRANSFER-TOKEN-SALT'
+              secretRef: toLower('REF-TRANSFER-TOKEN-SALT')
             }
             {
               name: 'JWT_SECRET'
-              secretRef: 'REF-JWT-SECRET'
+              secretRef: toLower('REF-JWT-SECRET')
             }
           ]
         }
