@@ -10,10 +10,6 @@ var name = take('ctap-xprtzbv-cms-${imageTag}', 32)
 var acrServer = 'xprtzbv.azurecr.io'
 var imageName = '${acrServer}/cms:${imageTag}'
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
-  name: keyVaultName
-}
-
 module containerAppEnvironment 'container-app-environment.bicep' = {
   name: 'Deploy-Container-App-Environment'
   params: {
@@ -125,70 +121,6 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
       scale: {
        minReplicas: 1
        maxReplicas: 1
-      }
-    }
-  }
-}
-
-resource pgsqlCli 'Microsoft.App/containerApps@2023-04-01-preview' = {
-  name: 'pgsql-cli'
-  location: location
-  properties: {
-    environmentId: containerAppEnvironment.outputs.containerAppEnvironmentId
-    template: {
-      serviceBinds: [
-        {
-          serviceId: containerAppEnvironment.outputs.postgresId
-        }
-      ]
-      containers: [
-        {
-          name: 'psql'
-          image: 'mcr.microsoft.com/k8se/services/postgres:14'
-          command: [ '/bin/sleep', 'infinity' ]
-        }
-      ]
-      scale: {
-        minReplicas: 1
-        maxReplicas: 1
-      }
-    }
-  }
-}
-
-resource pgweb 'Microsoft.App/containerApps@2023-04-01-preview' = {
-  name: 'pgweb'
-  location: location
-  properties: {
-    environmentId: containerAppEnvironment.outputs.containerAppEnvironmentId
-    configuration: {
-      ingress: {
-        external: true
-        targetPort: 8081
-      }
-    }
-    template: {
-      serviceBinds: [
-        {
-          serviceId: containerAppEnvironment.outputs.postgresId
-        }
-      ]
-      containers: [
-        {
-          name: 'pgweb'
-          image: 'docker.io/sosedoff/pgweb:latest'
-          command: [
-            '/bin/sh'
-          ]
-          args: [
-            '-c'
-            'PGWEB_DATABASE_URL=$POSTGRES_URL /usr/bin/pgweb --bind=0.0.0.0 --listen=8081'
-          ]
-        }
-      ]
-      scale: {
-        minReplicas: 1
-        maxReplicas: 1
       }
     }
   }
