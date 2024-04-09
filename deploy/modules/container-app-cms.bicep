@@ -2,11 +2,10 @@ param location string
 param keyVaultName string
 param containerAppUserAssignedIdentityResourceId string
 param containerAppUserAssignedIdentityClientId string
-param logAnalyticsWorkspaceName string
 param imageTag string = 'latest'
 
 var name = take('ctap-xprtzbv-cms-${imageTag}', 32)
-
+var dbName = take('psql-xprtzbv-cms-${imageTag}', 32)
 var acrServer = 'xprtzbv.azurecr.io'
 var imageName = '${acrServer}/cms:${imageTag}'
 
@@ -14,11 +13,20 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
   name: keyVaultName
 }
 
-module containerAppEnvironment 'container-app-environment.bicep' = {
-  name: 'Deploy-Container-App-Environment'
-  params: {
-    location: location
-    logAnalyticsWorkspaceName: logAnalyticsWorkspaceName
+resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2022-11-01-preview' existing = {
+  name: 'me-xprtzbv-website'
+}
+
+resource postgres 'Microsoft.App/containerApps@2023-04-01-preview' = {
+  name: dbName
+  location: location
+  properties: {
+    environmentId: containerAppEnvironment.id
+    configuration: {
+      service: {
+        type: 'postgres'
+      }
+    }
   }
 }
 
@@ -32,7 +40,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
     }
   }
   properties: {
-    environmentId: containerAppEnvironment.outputs.containerAppEnvironmentId
+    environmentId: containerAppEnvironment.id
     configuration: {
       registries: [
         {
@@ -75,7 +83,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
     template: {
       serviceBinds: [
         {
-          serviceId: containerAppEnvironment.outputs.postgresId
+          serviceId: postgres.id
         }
       ]
       containers: [
