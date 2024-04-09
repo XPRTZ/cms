@@ -10,6 +10,10 @@ var name = take('ctap-xprtzbv-cms-${imageTag}', 32)
 var acrServer = 'xprtzbv.azurecr.io'
 var imageName = '${acrServer}/cms:${imageTag}'
 
+resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+  name: keyVaultName
+}
+
 module containerAppEnvironment 'container-app-environment.bicep' = {
   name: 'Deploy-Container-App-Environment'
   params: {
@@ -43,27 +47,27 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
       secrets: [
         {
           name: toLower('REF-APP-KEYS')
-          keyVaultUrl: toLower('https://kv-xprtzbv-cms.vault.azure.net/secrets/APP-KEYS')
+          keyVaultUrl: toLower('${keyVault.properties.vaultUri}secrets/APP-KEYS')
           identity: containerAppUserAssignedIdentityResourceId
         }
         {
           name: toLower('REF-API-TOKEN-SALT')
-          keyVaultUrl: toLower('https://kv-xprtzbv-cms.vault.azure.net/secrets/API-TOKEN-SALT')
+          keyVaultUrl: toLower('${keyVault.properties.vaultUri}secrets/API-TOKEN-SALT')
           identity: containerAppUserAssignedIdentityResourceId
         }
         {
           name: toLower('REF-ADMIN-JWT-SECRET')
-          keyVaultUrl: toLower('https://kv-xprtzbv-cms.vault.azure.net/secrets/ADMIN-JWT-SECRET')
+          keyVaultUrl: toLower('${keyVault.properties.vaultUri}secrets/ADMIN-JWT-SECRET')
           identity: containerAppUserAssignedIdentityResourceId
         }
         {
           name: toLower('REF-TRANSFER-TOKEN-SALT')
-          keyVaultUrl: toLower('https://kv-xprtzbv-cms.vault.azure.net/secrets/TRANSFER-TOKEN-SALT')
+          keyVaultUrl: toLower('${keyVault.properties.vaultUri}secrets/TRANSFER-TOKEN-SALT')
           identity: containerAppUserAssignedIdentityResourceId
         }
         {
           name: toLower('REF-JWT-SECRET')
-          keyVaultUrl: toLower('https://kv-xprtzbv-cms.vault.azure.net/secrets/JWT-SECRET')
+          keyVaultUrl: toLower('${keyVault.properties.vaultUri}secrets/JWT-SECRET')
           identity: containerAppUserAssignedIdentityResourceId
         }
       ]
@@ -119,8 +123,8 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
         }
       ]
       scale: {
-       minReplicas: 1
-       maxReplicas: 1
+        minReplicas: 1
+        maxReplicas: 1
       }
     }
   }
