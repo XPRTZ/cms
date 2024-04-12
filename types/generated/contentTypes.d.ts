@@ -808,6 +808,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'oneToMany',
       'api::author.author'
     >;
+    description: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -837,57 +838,27 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
   attributes: {
     firstname: Attribute.String &
       Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
     lastname: Attribute.String &
       Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
     email: Attribute.Email &
       Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
       Attribute.SetMinMaxLength<{
         minLength: 3;
-      }>;
-    bio: Attribute.Blocks &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
       }>;
     gitHub: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    biography: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -903,12 +874,6 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::author.author',
-      'oneToMany',
-      'api::author.author'
-    >;
-    locale: Attribute.String;
   };
 }
 

@@ -28,6 +28,10 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::author.author"
+    },
+    "description": {
+      "type": "string",
+      "required": true
     }
   }
 }
