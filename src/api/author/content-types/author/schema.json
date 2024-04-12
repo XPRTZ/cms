@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "Firstname": {
+    "firstname": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -26,7 +26,7 @@
       "required": true,
       "minLength": 3
     },
-    "Lastname": {
+    "lastname": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -36,7 +36,7 @@
       "minLength": 3,
       "required": true
     },
-    "Email": {
+    "email": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -47,7 +47,7 @@
       "unique": false,
       "minLength": 3
     },
-    "Bio": {
+    "bio": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -55,7 +55,7 @@
       },
       "type": "blocks"
     },
-    "GitHub": {
+    "gitHub": {
       "pluginOptions": {
         "i18n": {
           "localized": true
