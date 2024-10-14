@@ -2,13 +2,13 @@ targetScope = 'subscription'
 
 param location string = 'westeurope'
 param environment string = 'preview'
+param imageTag string = 'latest'
 
 var environmentShort = environment == 'preview' ? 'prv' : 'prd'
 var defaultName = 'xprtzbv-cms'
 var resourceGroupName = 'rg-${defaultName}'
 var containerAppIdentityName = 'id-${defaultName}'
 var keyVaultName = 'kv-${defaultName}-${environmentShort}'
-var imageTag = 'latest'
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' existing = {
   name: resourceGroupName
