@@ -105,7 +105,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'PORT'
-              value: '80'
+              value: '1337'
             }
             {
               name: 'APP_KEYS'
