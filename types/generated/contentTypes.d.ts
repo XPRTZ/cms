@@ -17,6 +17,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     content: Schema.Attribute.RichText;
     authors: Schema.Attribute.Relation<'oneToMany', 'api::author.author'>;
     description: Schema.Attribute.String & Schema.Attribute.Required;
+    site: Schema.Attribute.Enumeration<['XPRTZ', 'XPRTZ TOO', 'XPRTZ Cloud']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'XPRTZ'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
