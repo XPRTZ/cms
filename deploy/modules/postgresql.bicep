@@ -15,6 +15,7 @@ resource postgreSql 'Microsoft.DBforPostgreSQL/flexibleServers@2023-12-01-previe
     administratorLogin: administratorLogin
     administratorLoginPassword: administratorLoginPassword
     createMode: 'Default'
+    replicationRole: 'Primary'
     version: '16'
     storage: {
       storageSizeGB: 32
@@ -29,10 +30,30 @@ resource postgreSql 'Microsoft.DBforPostgreSQL/flexibleServers@2023-12-01-previe
       activeDirectoryAuth: 'Enabled'
       passwordAuth: 'Enabled'
     }
+    backup: {
+      backupRetentionDays: 31
+      geoRedundantBackup: 'Disabled'
+    }
+    highAvailability: {
+      mode: 'Disabled'
+    }
+  }
+
+  resource databases 'databases' = {
+    name: 'strapi'
+  }
+
+  resource allowEntraAdministrator 'administrators' = {
+    name: '4add9805-c69a-45c5-bbfd-fdcdb4a945e7'
+    properties: {
+      principalName: 'maarten@xprtz.net'
+      principalType: 'User'
+      tenantId: '2a600bfa-5bb2-40e6-b33b-12bf8b7fa696'
+    }
   }
 
   resource allowAllWindowsAzureIps 'firewallRules' = {
-    name: 'AllowAllWindowsAzureIps'
+    name: 'AllowAllAzureServicesAndResourcesWithinAzureIps'
     properties: {
       startIpAddress: '0.0.0.0'
       endIpAddress: '0.0.0.0'

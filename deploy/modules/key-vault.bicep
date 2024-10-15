@@ -12,6 +12,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
     }
     tenantId: tenant().tenantId
     enabledForDeployment: true
+    enabledForDiskEncryption: true
     enableRbacAuthorization: true
     enablePurgeProtection: true
     enableSoftDelete: true
