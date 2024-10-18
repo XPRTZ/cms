@@ -15,15 +15,6 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
   scope: resourceGroup
 }
 
-// module keyVaultSecret 'modules/key-vault-secret.bicep' = {
-//   name: 'Get-PostgresAdminPassword'
-//   scope: resourceGroup
-//   params: {
-//     keyVaultName: keyVaultName
-//     name: 'POSTGRES-ADMIN-PASSWORD'
-//   }
-// }
-
 module postgresServer 'modules/postgresql.bicep' = {
   name: 'DeployPostgresql'
   scope: resourceGroup
@@ -34,3 +25,18 @@ module postgresServer 'modules/postgresql.bicep' = {
     resourceName: 'pgsql-xprtzbv-cms-bicep'
   }
 }
+
+// module postgresCreateUserAndSchema 'modules/postgres-user-schema.bicep' = {
+//   name: 'DeployPostgresqlUserAndSchema'
+//   scope: resourceGroup
+//   params: {
+//     location: 'germanywestcentral'
+//     administratorLogin: 'cmsadmin'
+//     administratorLoginPassword: keyVault.getSecret('POSTGRES-ADMIN-PASSWORD')
+//     customUserName: 'strapi_user'
+//     customUserPassword:keyVault.getSecret('POSTGRES-STRAPI-PASSWORD')
+//     databaseName: 'strapi'
+//     databaseSchema: 'strapi'
+//     serverName: 'pgsql-xprtzbv-cms-bicep'
+//   }
+// }
