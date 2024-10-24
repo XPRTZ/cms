@@ -11,6 +11,7 @@ services:
   #     DATABASE_NAME: ${DATABASE_NAME}
   #     DATABASE_USERNAME: ${DATABASE_USERNAME}
   #     DATABASE_PORT: ${DATABASE_PORT}
+  #     DATABASE_SCHEMA: ${DATABASE_SCHEMA}
   #     JWT_SECRET: ${JWT_SECRET}
   #     ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
   #     DATABASE_PASSWORD: ${DATABASE_PASSWORD}
@@ -35,6 +36,8 @@ services:
     restart: unless-stopped
     env_file: .env
     image: postgres:16-alpine
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${ADMINUSER}"]
     environment:
       POSTGRES_USER: ${ADMINUSER}
       POSTGRES_PASSWORD: ${ADMINPASSWORD}
@@ -46,22 +49,22 @@ services:
     networks:
       - strapi
 
-  # init-database:
-  #   container_name: init-database
-  #   image: cms/init
-  #   env_file: .env
-  #   environment:
-  #     ADMINUSER: ${ADMINUSER}
-  #     ADMINPASSWORD: ${ADMINPASSWORD}
-  #     SERVER: database
-  #     STRAPIUSER: ${STRAPIUSER}
-  #     STRAPIPASSWORD: ${STRAPIPASSWORD}
-  #     STRAPIDATABASENAME: ${STRAPIDATABASENAME}
-  #   networks:
-  #     - strapi
-  #   depends_on:
-  #     database:
-  #       condition: service_started
+  init-database:
+    container_name: init-database
+    image: cms/init
+    env_file: .env
+    environment:
+      ADMINUSER: ${ADMINUSER}
+      ADMINPASSWORD: ${ADMINPASSWORD}
+      SERVER: database
+      STRAPIUSER: ${STRAPIUSER}
+      STRAPIPASSWORD: ${STRAPIPASSWORD}
+      STRAPIDATABASENAME: ${STRAPIDATABASENAME}
+    networks:
+      - strapi
+    depends_on:
+      database:
+        condition: service_healthy
 
 volumes:
   cms-data:
