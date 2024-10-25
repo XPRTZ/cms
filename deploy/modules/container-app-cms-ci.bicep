@@ -2,7 +2,7 @@ param location string
 param keyVaultName string
 param containerAppUserAssignedIdentityResourceId string
 param containerAppUserAssignedIdentityClientId string
-param server string
+param databaseServerName string
 param imageTag string = 'latest'
 
 var name = take('ctap-xprtzbv-cms-${imageTag}', 32)
@@ -20,7 +20,7 @@ resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2022-11-01-p
 }
 
 resource postgres 'Microsoft.DBforPostgreSQL/flexibleServers@2023-12-01-preview' existing = {
-  name: server
+  name: databaseServerName
 }
 
 resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
@@ -127,7 +127,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'DATABASE_HOST'
-              value: server
+              value: postgres.properties.fullyQualifiedDomainName
             }
             {
               name: 'DATABASE_PORT'
@@ -179,7 +179,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'SERVER'
-              value: server
+              value: postgres.properties.fullyQualifiedDomainName
             }
             {
               name: 'STRAPIUSER'
