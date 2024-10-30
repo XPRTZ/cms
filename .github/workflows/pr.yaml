@@ -83,7 +83,7 @@ jobs:
 
               ## Strapi
 
-              ${{ steps.deployCms.outputs.cmsFqdn }}
+              [URL](https://${{ steps.deployCms.outputs.cmsFqdn }})
               `
             })
 
