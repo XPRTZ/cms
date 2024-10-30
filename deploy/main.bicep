@@ -11,8 +11,14 @@ var resourceGroupName = 'rg-${defaultName}'
 var containerAppIdentityName = 'id-${defaultName}'
 var keyVaultName = 'kv-${defaultName}-${environmentShort}'
 var databaseServerName = 'pgsql-xprtzbv-cms-${environmentShort}'
-var managementResourceGroup = az.resourceGroup(sharedValues.subscriptionIds.common, sharedValues.resourceGroups.management)
-var infrastructureResourceGroup = az.resourceGroup(sharedValues.subscriptionIds.common, sharedValues.resourceGroups.infrastructure)
+var managementResourceGroup = az.resourceGroup(
+  sharedValues.subscriptionIds.common,
+  sharedValues.resourceGroups.management
+)
+var infrastructureResourceGroup = az.resourceGroup(
+  sharedValues.subscriptionIds.common,
+  sharedValues.resourceGroups.infrastructure
+)
 var rootDomain = 'xprtz.dev'
 var frontDoorProfileName = 'afd-xprtzbv-websites'
 
@@ -52,7 +58,7 @@ module containerAppCmsProd 'modules/container-app-cms-prod.bicep' = if (environm
 
 module frontdoorSettings 'modules/frontdoor.bicep' = if (environment == 'production') {
   scope: infrastructureResourceGroup
-  name: 'cloudFrontDoorSettingsDeploy'
+  name: 'Deploy-Frontdoor-Settings'
   params: {
     frontDoorOriginHost: containerAppCmsProd.outputs.containerAppUrl
     frontDoorProfileName: frontDoorProfileName
