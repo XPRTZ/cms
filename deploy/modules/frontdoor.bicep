@@ -6,7 +6,7 @@ param subDomain string
 
 var frontDoorOriginName = 'afd-origin-${application}'
 var frontDoorEndpointName = 'fde-${application}-${uniqueString(resourceGroup().id)}'
-var frontDoorOriginGroupName = 'xprtz-website-${application}'
+var frontDoorOriginGroupName = 'xprtz-${application}'
 var frontDoorRouteName = 'inbound'
 var customDomainHost = '${subDomain}.${rootDomain}'
 var customDomainResourceName = replace('${customDomainHost}', '.', '-')
