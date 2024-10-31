@@ -81,4 +81,4 @@ module dns 'modules/dns.bicep' = if (environment == 'production') {
 
 output cmsFqdn string = environment == 'preview'
   ? containerAppCms.outputs.containerAppUrl
-  : ''
+  : 'cms.xprtz.net'
