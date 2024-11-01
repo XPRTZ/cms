@@ -51,7 +51,7 @@ services:
 volumes:
   cms-data:
   storage-data:
-  minio-data:
+
 
 networks:
   strapi:
