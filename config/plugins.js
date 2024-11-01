@@ -12,7 +12,7 @@ module.exports = ({ env }) => ({
   },
   upload: {
     config: {
-      provider: "@Physer/strapi-provider-upload-azure-storage",
+      provider: "@physer/strapi-provider-upload-azure-storage",
       providerOptions: {
         authType: env("STORAGE_AUTH_TYPE", "default"),
         account: env("STORAGE_ACCOUNT"),
