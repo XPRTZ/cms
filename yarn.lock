@@ -129,7 +129,7 @@
     fast-xml-parser "^4.4.1"
     tslib "^2.6.2"
 
-"@azure/identity@^4.0.0":
+"@azure/identity@^4.5.0":
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/@azure/identity/-/identity-4.5.0.tgz#93ce3757bf761a08cfd05f56ef181435e05b9e1c"
   integrity sha512-EknvVmtBuSIic47xkOqyNabAme0RYTw52BTMz8eBgU1ysTyMrD1uOoM+JdS0J/4Yfp98IBT3osqq3BfwSaNaGQ==
@@ -177,7 +177,7 @@
     jsonwebtoken "^9.0.0"
     uuid "^8.3.0"
 
-"@azure/storage-blob@^12.12.0":
+"@azure/storage-blob@^12.25.0":
   version "12.25.0"
   resolved "https://registry.yarnpkg.com/@azure/storage-blob/-/storage-blob-12.25.0.tgz#fa9a1d2456cdf6526450a8b73059d2f2e9b1ec76"
   integrity sha512-oodouhA3nCCIh843tMMbxty3WqfNT+Vgzj3Xo5jqR9UPnzq3d7mzLjlHAYz7lW+b4km3SIgz+NAgztvhm7Z6kQ==
@@ -1136,6 +1136,14 @@
   integrity sha512-ZOBkgDwEdoYVlSeRbYYXs0S9MejQofiVYoTbKzy/6GQa39/q5tQU2IX46+shYnUkpEl3wc+J6wRlar7r2EK2xA==
   dependencies:
     "@noble/hashes" "^1.1.5"
+
+"@physer/strapi-provider-upload-azure-storage@^3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@physer/strapi-provider-upload-azure-storage/-/strapi-provider-upload-azure-storage-3.4.1.tgz#330f1083aa69bcb0dcb4f4c555c16afa5b59157a"
+  integrity sha512-mbGorgv6wPBJZYQHJPY0dJrVyJLDH1minUp1UrzfUEkQUkV/9LsTYXtURJ9MLs6KraSG4C520wV04R8xnSGW/w==
+  dependencies:
+    "@azure/identity" "^4.5.0"
+    "@azure/storage-blob" "^12.25.0"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
@@ -9595,14 +9603,6 @@ strapi-provider-email-azure@^1.0.3:
   integrity sha512-zpPiwbvQxGtceVvtYKBD4v+yMvGQZgw8awcbN5fGM3zYZhrTgmcsejaztax8i7pdFbihWgIRF/ziBLxgR3+32Q==
   dependencies:
     "@azure/communication-email" "^1.0.0"
-
-strapi-provider-upload-azure-storage@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/strapi-provider-upload-azure-storage/-/strapi-provider-upload-azure-storage-3.4.0.tgz#935a77621702c7cdd7d81d42531a612dbec22990"
-  integrity sha512-atbtNUgf+5+9sNJR3rcxURtOLtvIS0AOKcymj8EuYF0YaZ1u/rXucfW481MFZoexamZsBdwwPZZ7404WucrRnQ==
-  dependencies:
-    "@azure/identity" "^4.0.0"
-    "@azure/storage-blob" "^12.12.0"
 
 stream-chain@2.2.5, stream-chain@^2.2.5:
   version "2.2.5"
