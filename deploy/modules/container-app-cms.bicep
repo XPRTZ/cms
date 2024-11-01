@@ -163,6 +163,10 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
               value: 'true'
             }
             {
+              name: 'STORAGE_CONTAINER_NAME'
+              value: 'media'
+            }
+            {
               name: 'STORAGE_PUBLIC_ACCESS_TYPE'
               value: 'container'
             }
