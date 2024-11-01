@@ -18,6 +18,7 @@ module.exports = [
              * If using a CDN URL make sure to include that url in the CSP headers process.env.STORAGE_CDN_URL
              */
             `https://${process.env.STORAGE_ACCOUNT}.blob.core.windows.net`,
+            `${process.env.STORAGE_URL}`
           ],
           "media-src": [
             "'self'",
@@ -28,7 +29,7 @@ module.exports = [
              * If using a CDN URL make sure to include that url in the CSP headers process.env.STORAGE_CDN_URL
              */
             `https://${process.env.STORAGE_ACCOUNT}.blob.core.windows.net`,
-
+            `${process.env.STORAGE_URL}`
           ],
           upgradeInsecureRequests: null,
         },
