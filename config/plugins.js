@@ -15,6 +15,7 @@ module.exports = ({ env }) => ({
       provider: "@physer/strapi-provider-upload-azure-storage",
       providerOptions: {
         authType: env("STORAGE_AUTH_TYPE", "default"),
+        clientId: env("AZURE_CLIENT_ID"),
         account: env("STORAGE_ACCOUNT"),
         accountKey: env("STORAGE_ACCOUNT_KEY"),//either account key or sas token is enough to make authentication
         sasToken: env("STORAGE_ACCOUNT_SAS_TOKEN"),

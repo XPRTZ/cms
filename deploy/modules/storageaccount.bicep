@@ -12,8 +12,16 @@ param sku string = 'Standard_LRS'
 param app string
 param location string = 'germanywestcentral'
 param environmentShort string = 'preview'
+param containerAppIdentity string
+param blobDataContributorRoleId string
 
 var name = take('stxprtzbv${app}${environmentShort}${uniqueString(resourceGroup().id)}', 24)
+
+
+resource storageBlobDataContributorRoleDefinition 'Microsoft.Authorization/roleDefinitions@2022-04-01' existing = {
+  scope: subscription()
+  name: blobDataContributorRoleId
+}
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-04-01' = {
   name: name
@@ -27,7 +35,17 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-04-01' = {
     accessTier: 'Hot'
     allowBlobPublicAccess: true
     minimumTlsVersion: 'TLS1_2'
+    allowSharedKeyAccess: false
+  }
+}
 
+resource roleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  scope: storageAccount
+  name: guid(storageAccount.id, containerAppIdentity, storageBlobDataContributorRoleDefinition.id)
+  properties: {
+    roleDefinitionId: storageBlobDataContributorRoleDefinition.id
+    principalId: containerAppIdentity
+    principalType: 'ServicePrincipal'
   }
 }
 
