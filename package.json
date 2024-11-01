@@ -7,9 +7,12 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "format": "prettier . --write"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  },
   "dependencies": {
     "@strapi/plugin-cloud": "5.1.1",
     "@strapi/plugin-users-permissions": "5.1.1",

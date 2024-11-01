@@ -5,7 +5,7 @@ services:
     env_file: .env
     image: postgres:16
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${ADMINUSER}" ]
+      test: ['CMD', 'pg_isready', '-U', '${ADMINUSER}']
     environment:
       POSTGRES_USER: ${ADMINUSER}
       POSTGRES_PASSWORD: ${ADMINPASSWORD}
@@ -38,7 +38,6 @@ services:
 
 volumes:
   cms-data:
-
 
 networks:
   strapi:
