@@ -17,7 +17,6 @@ param blobDataContributorRoleId string
 
 var name = take('stxprtzbv${app}${environmentShort}${uniqueString(resourceGroup().id)}', 24)
 
-
 resource storageBlobDataContributorRoleDefinition 'Microsoft.Authorization/roleDefinitions@2022-04-01' existing = {
   scope: subscription()
   name: blobDataContributorRoleId
