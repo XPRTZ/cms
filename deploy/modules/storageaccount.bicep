@@ -34,7 +34,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-04-01' = {
     accessTier: 'Hot'
     allowBlobPublicAccess: true
     minimumTlsVersion: 'TLS1_2'
-    allowSharedKeyAccess: false
+    allowSharedKeyAccess: true
   }
 }
 
