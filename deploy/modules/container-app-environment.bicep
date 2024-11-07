@@ -24,7 +24,7 @@ resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2024-03-01' 
 }
 
 resource containerAppEnvironmentStorage 'Microsoft.App/managedEnvironments/storages@2024-03-01' = {
-  name: 'me-xprtzbv-cms-storage-upload'
+  name: 'upload'
   parent: containerAppEnvironment
   properties: {
     azureFile: {
