@@ -6,8 +6,8 @@ param imageTag string = 'latest'
 param deployTime int = dateTimeToEpoch(dateTimeAdd(utcNow(), 'P1Y'))
 param app string = 'cms'
 param environment string = 'preview'
-var environmentShort = environment == 'preview' ? 'prv' : 'prd'
 
+var environmentShort = environment == 'preview' ? 'prv' : 'prd'
 var name = take('ctap-xprtzbv-cms-${imageTag}', 32)
 var dbName = take('psql-xprtzbv-cms-${imageTag}', 32)
 var acrServer = 'xprtzbv.azurecr.io'
