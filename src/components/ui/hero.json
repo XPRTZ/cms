@@ -25,9 +25,7 @@
       "component": "elements.button"
     },
     "images": {
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "type": "media",
       "multiple": true,
       "required": true

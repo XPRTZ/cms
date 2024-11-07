@@ -13,6 +13,19 @@ export interface ElementsButton extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsListItemWithIcon extends Struct.ComponentSchema {
+  collectionName: 'components_elements_list_item_with_icons';
+  info: {
+    displayName: 'List Item with Icon';
+    icon: 'bulletList';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface UiHero extends Struct.ComponentSchema {
   collectionName: 'components_ui_heroes';
   info: {
@@ -28,11 +41,35 @@ export interface UiHero extends Struct.ComponentSchema {
   };
 }
 
+export interface UiKernwaarden extends Struct.ComponentSchema {
+  collectionName: 'components_ui_kernwaardens';
+  info: {
+    description: '';
+    displayName: 'Kernwaarden';
+    icon: 'star';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<'elements.list-item-with-icon', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+          min: 1;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'elements.button': ElementsButton;
+      'elements.list-item-with-icon': ElementsListItemWithIcon;
       'ui.hero': UiHero;
+      'ui.kernwaarden': UiKernwaarden;
     }
   }
 }
