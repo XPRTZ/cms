@@ -3,11 +3,13 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface ElementsButton extends Struct.ComponentSchema {
   collectionName: 'components_elements_buttons';
   info: {
+    description: '';
     displayName: 'Button';
     icon: 'link';
   };
   attributes: {
     href: Schema.Attribute.Text & Schema.Attribute.Required;
+    page: Schema.Attribute.Relation<'oneToOne', 'api::page.page'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     variant: Schema.Attribute.Enumeration<['primary', 'secondary']>;
   };
@@ -29,6 +31,7 @@ export interface ElementsListItemWithIcon extends Struct.ComponentSchema {
 export interface UiHero extends Struct.ComponentSchema {
   collectionName: 'components_ui_heroes';
   info: {
+    description: '';
     displayName: 'Hero';
     icon: 'landscape';
   };

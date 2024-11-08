@@ -2,7 +2,8 @@
   "collectionName": "components_elements_buttons",
   "info": {
     "displayName": "Button",
-    "icon": "link"
+    "icon": "link",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -17,6 +18,11 @@
     "variant": {
       "type": "enumeration",
       "enum": ["primary", "secondary"]
+    },
+    "page": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
     }
   }
 }
