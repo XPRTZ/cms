@@ -35,6 +35,11 @@
       ],
       "required": true,
       "default": "dotnet"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

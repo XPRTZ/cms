@@ -477,6 +477,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     site: Schema.Attribute.Enumeration<['cloud', 'dotnet']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'dotnet'>;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
