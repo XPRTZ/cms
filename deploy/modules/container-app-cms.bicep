@@ -12,7 +12,7 @@ var environmentShort = environment == 'preview' ? 'prv' : 'prd'
 var name = take('ctap-xprtzbv-cms-${imageTag}', 32)
 var acrServer = 'xprtzbv.azurecr.io'
 var imageName = '${acrServer}/cms:${imageTag}'
-var initImageName = '${acrServer}/cms/init:${imageTag}'
+var initImageName = '${acrServer}/cms/init:latest'
 var administratorLogin = 'cmsadmin'
 var deployTimeInSecondsSinceEpoch = string(deployTime)
 var storageAccountName = take('stxprtzbv${app}${environmentShort}${uniqueString(az.resourceGroup().id)}', 24)
