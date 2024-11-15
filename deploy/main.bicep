@@ -81,3 +81,5 @@ module dns 'modules/dns.bicep' = {
     validationToken: frontdoorSettings.outputs.frontDoorCustomDomainValidationToken
   }
 }
+
+output cmsFqdn string = containerAppCms.outputs.containerAppUrl
