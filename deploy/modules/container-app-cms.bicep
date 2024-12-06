@@ -30,10 +30,6 @@ resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2022-11-01-p
   name: 'me-xprtzbv-cms'
 }
 
-resource postgres 'Microsoft.DBforPostgreSQL/flexibleServers@2023-12-01-preview' existing = {
-  name: databaseServerName
-}
-
 resource fileServices 'Microsoft.Storage/storageAccounts/fileServices@2023-05-01' = {
   name: 'default'
   parent: storageAccount
@@ -173,7 +169,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'DATABASE_HOST'
-              value: postgres.properties.fullyQualifiedDomainName
+              value: databaseServerName
             }
             {
               name: 'DATABASE_PORT'
@@ -181,7 +177,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'DATABASE_SSL'
-              value: 'true'
+              value: 'false'
             }
             {
               name: 'DATABASE_SCHEMA'
@@ -263,7 +259,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'SERVER'
-              value: postgres.properties.fullyQualifiedDomainName
+              value: databaseServerName
             }
             {
               name: 'STRAPIUSER'

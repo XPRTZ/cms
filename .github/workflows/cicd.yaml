@@ -59,16 +59,6 @@ jobs:
           parameters: environment=production
           failOnStdErr: false
 
-      - name: Deploy database
-        uses: azure/arm-deploy@v2
-        with:
-          scope: subscription
-          region: germanywestcentral
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          template: ./deploy/database.bicep
-          parameters: environment=production
-          failOnStdErr: false
-
       - name: Deploy cms
         uses: azure/arm-deploy@v2
         with:
