@@ -2,7 +2,7 @@ param location string
 param keyVaultName string
 param containerAppUserAssignedIdentityResourceId string
 param containerAppUserAssignedIdentityClientId string
-param databaseServerName string
+param databaseServerUrl string
 param imageTag string = 'latest'
 param deployTime int = dateTimeToEpoch(dateTimeAdd(utcNow(), 'P1Y'))
 param app string = 'cms'
@@ -28,10 +28,6 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' existing 
 
 resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2022-11-01-preview' existing = {
   name: 'me-xprtzbv-cms'
-}
-
-resource postgres 'Microsoft.DBforPostgreSQL/flexibleServers@2023-12-01-preview' existing = {
-  name: databaseServerName
 }
 
 resource fileServices 'Microsoft.Storage/storageAccounts/fileServices@2023-05-01' = {
@@ -173,7 +169,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'DATABASE_HOST'
-              value: postgres.properties.fullyQualifiedDomainName
+              value: databaseServerUrl
             }
             {
               name: 'DATABASE_PORT'
@@ -263,7 +259,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'SERVER'
-              value: postgres.properties.fullyQualifiedDomainName
+              value: databaseServerUrl
             }
             {
               name: 'STRAPIUSER'

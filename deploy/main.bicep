@@ -11,7 +11,6 @@ var defaultName = 'xprtzbv-cms'
 var resourceGroupName = 'rg-${defaultName}'
 var containerAppIdentityName = 'id-${defaultName}'
 var keyVaultName = 'kv-${defaultName}-${environmentShort}'
-var databaseServerName = 'pgsql-xprtzbv-cms-${environmentShort}'
 var managementResourceGroup = az.resourceGroup(
   sharedValues.subscriptionIds.common,
   sharedValues.resourceGroups.management
@@ -65,7 +64,7 @@ module containerAppCms 'modules/container-app-cms.bicep' = {
     keyVaultName: keyVaultName
     containerAppUserAssignedIdentityResourceId: containerAppIdentity.id
     containerAppUserAssignedIdentityClientId: containerAppIdentity.properties.clientId
-    databaseServerName: databaseServerName
+    databaseServerUrl: containerAppDatabase.outputs.containerAppDatabaseUrl
     imageTag: imageTag
     environment: environment
     app: app
