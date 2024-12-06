@@ -64,7 +64,7 @@ module containerAppCms 'modules/container-app-cms.bicep' = {
     keyVaultName: keyVaultName
     containerAppUserAssignedIdentityResourceId: containerAppIdentity.id
     containerAppUserAssignedIdentityClientId: containerAppIdentity.properties.clientId
-    databaseServerUrl: containerAppDatabase.outputs.containerAppDatabaseUrl
+    databaseServerName: containerAppDatabase.outputs.containerAppDatabaseServerName
     imageTag: imageTag
     environment: environment
     app: app

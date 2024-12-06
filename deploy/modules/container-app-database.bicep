@@ -138,3 +138,4 @@ resource containerAppDatabase 'Microsoft.App/containerApps@2023-08-01-preview' =
 }
 
 output containerAppDatabaseUrl string = containerAppDatabase.properties.latestRevisionFqdn
+output containerAppDatabaseServerName string = containerAppDatabase.name

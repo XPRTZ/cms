@@ -2,7 +2,7 @@ param location string
 param keyVaultName string
 param containerAppUserAssignedIdentityResourceId string
 param containerAppUserAssignedIdentityClientId string
-param databaseServerUrl string
+param databaseServerName string
 param imageTag string = 'latest'
 param deployTime int = dateTimeToEpoch(dateTimeAdd(utcNow(), 'P1Y'))
 param app string = 'cms'
@@ -169,7 +169,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'DATABASE_HOST'
-              value: databaseServerUrl
+              value: databaseServerName
             }
             {
               name: 'DATABASE_PORT'
@@ -259,7 +259,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'SERVER'
-              value: databaseServerUrl
+              value: databaseServerName
             }
             {
               name: 'STRAPIUSER'
