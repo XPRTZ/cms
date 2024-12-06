@@ -44,6 +44,19 @@ module storage 'modules/storageaccount.bicep' = {
   }
 }
 
+module containerAppDatabase 'modules/container-app-database.bicep' = {
+  scope: resourceGroup
+  name: 'Deploy-Container-App-Database'
+  params: {
+    location: location
+    keyVaultName: keyVaultName
+    containerAppUserAssignedIdentityResourceId: containerAppIdentity.id
+    containerAppUserAssignedIdentityClientId: containerAppIdentity.properties.clientId
+    environment: environment
+    app: app
+  }
+}
+
 module containerAppCms 'modules/container-app-cms.bicep' = {
   scope: resourceGroup
   name: 'Deploy-Container-App-Cms'

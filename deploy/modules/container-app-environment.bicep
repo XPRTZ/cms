@@ -23,13 +23,26 @@ resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2024-03-01' 
   }
 }
 
-resource containerAppEnvironmentStorage 'Microsoft.App/managedEnvironments/storages@2024-03-01' = {
+resource containerAppEnvironmentStorageUpload 'Microsoft.App/managedEnvironments/storages@2024-03-01' = {
   name: 'upload'
   parent: containerAppEnvironment
   properties: {
     azureFile: {
       accountName: storageAccountName
       shareName: 'upload'
+      accessMode: 'ReadWrite'
+      accountKey: storageAccount.listKeys().keys[0].value
+    }
+  }
+}
+
+resource containerAppEnvironmentStorageDatabase 'Microsoft.App/managedEnvironments/storages@2024-03-01' = {
+  name: 'database'
+  parent: containerAppEnvironment
+  properties: {
+    azureFile: {
+      accountName: storageAccountName
+      shareName: 'database'
       accessMode: 'ReadWrite'
       accountKey: storageAccount.listKeys().keys[0].value
     }
