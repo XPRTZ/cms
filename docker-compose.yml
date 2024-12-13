@@ -3,38 +3,18 @@ services:
     container_name: database
     restart: unless-stopped
     env_file: .env
-    image: postgres:16
-    healthcheck:
-      test: ['CMD', 'pg_isready', '-U', '${ADMINUSER}']
+    image: mysql:8
     environment:
-      POSTGRES_USER: ${ADMINUSER}
-      POSTGRES_PASSWORD: ${ADMINPASSWORD}
-      POSTGRES_DB: ${STRAPIDATABASENAME}
+      MYSQL_ROOT_PASSWORD: ${ADMINPASSWORD}
+      MYSQL_DATABASE: ${STRAPIDATABASENAME}
+      MYSQL_USER: ${STRAPIUSER}
+      MYSQL_PASSWORD: ${STRAPIPASSWORD}
     volumes:
-      - cms-data:/var/lib/postgresql/data/
+      - mysql-data:/var/lib/mysql
     ports:
-      - '5432:5432'
+      - '3306:3306'
     networks:
       - strapi
-
-  init-database:
-    container_name: init-database
-    build:
-      dockerfile: Dockerfile.database
-      context: .
-    env_file: .env
-    environment:
-      ADMINUSER: ${ADMINUSER}
-      ADMINPASSWORD: ${ADMINPASSWORD}
-      SERVER: database
-      STRAPIUSER: ${STRAPIUSER}
-      STRAPIPASSWORD: ${STRAPIPASSWORD}
-      STRAPIDATABASENAME: ${STRAPIDATABASENAME}
-    networks:
-      - strapi
-    depends_on:
-      database:
-        condition: service_healthy
 
   azurite:
     image: mcr.microsoft.com/azure-storage/azurite
@@ -49,7 +29,7 @@ services:
       - storage-data:/data/
 
 volumes:
-  cms-data:
+  mysql-data:
   storage-data:
 
 networks:
