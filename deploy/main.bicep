@@ -56,7 +56,7 @@ module containerAppCms 'modules/container-app-cms.bicep' = {
     databaseServerName: databaseServerName
     imageTag: imageTag
     environment: environment
-    app: app
+    app: 'cms'
   }
 }
 
