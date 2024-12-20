@@ -12,7 +12,7 @@ var environmentShort = environment == 'preview' ? 'prv' : 'prd'
 var name = take('ctap-xprtzbv-cms-${imageTag}', 32)
 var acrServer = 'xprtzbv.azurecr.io'
 var imageName = '${acrServer}/cms:${imageTag}'
-var initImageName = '${acrServer}/cms/init:latest'
+var initImageName = '${acrServer}/cms/init:mysql'
 var administratorLogin = 'cmsadmin'
 var deployTimeInSecondsSinceEpoch = string(deployTime)
 var storageAccountName = take('stxprtzbv${app}${environmentShort}${uniqueString(az.resourceGroup().id)}', 24)
@@ -30,7 +30,7 @@ resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2022-11-01-p
   name: 'me-xprtzbv-cms'
 }
 
-resource postgres 'Microsoft.DBforPostgreSQL/flexibleServers@2023-12-01-preview' existing = {
+resource mysql 'Microsoft.DBforMySQL/flexibleServers@2023-12-30' existing = {
   name: databaseServerName
 }
 
@@ -172,20 +172,20 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
               secretRef: toLower('REF-JWT-SECRET')
             }
             {
+              name: 'DATABASE_CLIENT'
+              value: 'mysql'
+            }
+            {
               name: 'DATABASE_HOST'
-              value: postgres.properties.fullyQualifiedDomainName
+              value: mysql.properties.fullyQualifiedDomainName
             }
             {
               name: 'DATABASE_PORT'
-              value: '5432'
+              value: '3306'
             }
             {
               name: 'DATABASE_SSL'
               value: 'true'
-            }
-            {
-              name: 'DATABASE_SCHEMA'
-              value: 'strapi'
             }
             {
               name: 'DATABASE_USERNAME'
@@ -263,7 +263,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-08-01-preview' = {
             }
             {
               name: 'SERVER'
-              value: postgres.properties.fullyQualifiedDomainName
+              value: mysql.properties.fullyQualifiedDomainName
             }
             {
               name: 'STRAPIUSER'

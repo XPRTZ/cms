@@ -1,8 +1,8 @@
 FROM alpine
-RUN apk update && apk add --no-cache postgresql16-client
+RUN apk update && apk add --no-cache mysql-client
 
 WORKDIR /database/
-COPY ./deploy/scripts/database-init.sh .
-RUN chmod +x database-init.sh
+COPY ./deploy/scripts/database-init-mysql.sh .
+RUN chmod +x database-init-mysql.sh
 
-CMD ["./database-init.sh"]
+CMD ["./database-init-mysql.sh"]

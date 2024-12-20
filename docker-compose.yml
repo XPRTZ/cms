@@ -9,12 +9,35 @@ services:
       MYSQL_DATABASE: ${STRAPIDATABASENAME}
       MYSQL_USER: ${STRAPIUSER}
       MYSQL_PASSWORD: ${STRAPIPASSWORD}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - mysql-data:/var/lib/mysql
     ports:
       - '3306:3306'
     networks:
       - strapi
+
+  init-database:
+    container_name: init-database
+    build:
+      dockerfile: Dockerfile.database
+      context: .
+    env_file: .env
+    environment:
+      ADMINPASSWORD: ${ADMINPASSWORD}
+      SERVER: database
+      STRAPIUSER: ${STRAPIUSER}
+      STRAPIPASSWORD: ${STRAPIPASSWORD}
+      STRAPIDATABASENAME: ${STRAPIDATABASENAME}
+    networks:
+      - strapi
+    depends_on:
+      database:
+        condition: service_healthy
 
   azurite:
     image: mcr.microsoft.com/azure-storage/azurite
