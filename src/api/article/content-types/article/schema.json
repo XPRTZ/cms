@@ -26,10 +26,7 @@
     },
     "site": {
       "type": "enumeration",
-      "enum": [
-        "dotnet",
-        "cloud"
-      ],
+      "enum": ["dotnet", "cloud"],
       "required": true,
       "default": "dotnet"
     },
@@ -46,9 +43,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "tags": {
       "type": "relation",
