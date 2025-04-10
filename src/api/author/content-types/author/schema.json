@@ -40,6 +40,19 @@
     "biography": {
       "pluginOptions": {},
       "type": "text"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "jobTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Software developer"
     }
   }
 }
