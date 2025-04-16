@@ -3,8 +3,6 @@ run-name: ${{ github.actor }} is deploying the cms to preview
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
 
 permissions:
   id-token: write
@@ -28,6 +26,10 @@ jobs:
           azcliversion: latest
           inlineScript: |
             az account show
+
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: 0
 
       - name: Deploy cms
         uses: azure/arm-deploy@v2
