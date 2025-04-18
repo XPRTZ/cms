@@ -510,6 +510,7 @@ export interface ApiGlobalSettingGlobalSetting
 export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
   collectionName: 'homepages';
   info: {
+    description: '';
     displayName: 'Homepage';
     pluralName: 'homepages';
     singularName: 'homepage';
@@ -523,7 +524,9 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    components: Schema.Attribute.DynamicZone<['ui.hero']> &
+    components: Schema.Attribute.DynamicZone<
+      ['ui.hero', 'ui.missie-met-statistieken']
+    > &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -617,6 +620,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<'dotnet'>;
+    slug: Schema.Attribute.UID<'title_cms'> & Schema.Attribute.Required;
     title_cms: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{

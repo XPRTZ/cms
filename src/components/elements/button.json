@@ -11,13 +11,14 @@
       "type": "string",
       "required": true
     },
-    "href": {
-      "type": "text",
-      "required": true
-    },
     "variant": {
       "type": "enumeration",
-      "enum": ["primary", "secondary"]
+      "enum": [
+        "primary",
+        "secondary",
+        "button",
+        "link"
+      ]
     },
     "page": {
       "type": "relation",

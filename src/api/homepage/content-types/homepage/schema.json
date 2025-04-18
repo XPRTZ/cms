@@ -4,7 +4,8 @@
   "info": {
     "singularName": "homepage",
     "pluralName": "homepages",
-    "displayName": "Homepage"
+    "displayName": "Homepage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -40,7 +41,10 @@
         }
       },
       "type": "dynamiczone",
-      "components": ["ui.hero"],
+      "components": [
+        "ui.hero",
+        "ui.missie-met-statistieken"
+      ],
       "required": true,
       "min": 1
     },
@@ -51,7 +55,10 @@
         }
       },
       "type": "enumeration",
-      "enum": ["cloud", "dotnet"],
+      "enum": [
+        "cloud",
+        "dotnet"
+      ],
       "required": true,
       "default": "dotnet"
     }
