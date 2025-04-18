@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_ui_missie_met_statistiekens",
+  "info": {
+    "displayName": "Missie met statistieken",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "extraDescription": {
+      "type": "text",
+      "required": true
+    },
+    "statistieken": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.list-item",
+      "required": true,
+      "max": 3,
+      "min": 1
+    }
+  }
+}

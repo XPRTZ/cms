@@ -8,10 +8,23 @@ export interface ElementsButton extends Struct.ComponentSchema {
     icon: 'link';
   };
   attributes: {
-    href: Schema.Attribute.Text & Schema.Attribute.Required;
     page: Schema.Attribute.Relation<'oneToOne', 'api::page.page'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
-    variant: Schema.Attribute.Enumeration<['primary', 'secondary']>;
+    variant: Schema.Attribute.Enumeration<
+      ['primary', 'secondary', 'button', 'link']
+    >;
+  };
+}
+
+export interface ElementsListItem extends Struct.ComponentSchema {
+  collectionName: 'components_elements_list_items';
+  info: {
+    displayName: 'List Item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    description: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -81,14 +94,39 @@ export interface UiKernwaarden extends Struct.ComponentSchema {
   };
 }
 
+export interface UiMissieMetStatistieken extends Struct.ComponentSchema {
+  collectionName: 'components_ui_missie_met_statistiekens';
+  info: {
+    description: '';
+    displayName: 'Missie met statistieken';
+    icon: 'apps';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    extraDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    statistieken: Schema.Attribute.Component<'elements.list-item', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+          min: 1;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'elements.button': ElementsButton;
+      'elements.list-item': ElementsListItem;
       'elements.list-item-with-icon': ElementsListItemWithIcon;
       'elements.social': ElementsSocial;
       'ui.hero': UiHero;
       'ui.kernwaarden': UiKernwaarden;
+      'ui.missie-met-statistieken': UiMissieMetStatistieken;
     }
   }
 }
