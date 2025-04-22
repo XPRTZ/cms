@@ -120,6 +120,26 @@ export interface UiKernwaarden extends Struct.ComponentSchema {
   };
 }
 
+export interface UiKlantLogoS extends Struct.ComponentSchema {
+  collectionName: 'components_ui_klant_logo_s';
+  info: {
+    displayName: "Klant logo's";
+    icon: 'chartCircle';
+  };
+  attributes: {
+    klant: Schema.Attribute.Component<'elements.list-item-with-icon', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 1;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface UiMissieMetStatistieken extends Struct.ComponentSchema {
   collectionName: 'components_ui_missie_met_statistiekens';
   info: {
@@ -154,6 +174,7 @@ declare module '@strapi/strapi' {
       'ui.image': UiImage;
       'ui.image-met-titel': UiImageMetTitel;
       'ui.kernwaarden': UiKernwaarden;
+      'ui.klant-logo-s': UiKlantLogoS;
       'ui.missie-met-statistieken': UiMissieMetStatistieken;
     }
   }

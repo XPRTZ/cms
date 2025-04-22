@@ -46,7 +46,8 @@
         "ui.missie-met-statistieken",
         "ui.image",
         "ui.image-met-titel",
-        "ui.kernwaarden"
+        "ui.kernwaarden",
+        "ui.klant-logo-s"
       ],
       "required": true,
       "min": 1

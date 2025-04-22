@@ -52,6 +52,17 @@ const populate = {
           }
         }
       },
+      "ui.klant-logo-s": {
+        populate: {
+          klant: {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText']
+              }
+            }
+          }
+        }
+      },
     }
   }
 }
