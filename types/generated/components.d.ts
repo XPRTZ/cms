@@ -111,7 +111,7 @@ export interface UiKernwaarden extends Struct.ComponentSchema {
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
-          max: 3;
+          max: 5;
           min: 1;
         },
         number
