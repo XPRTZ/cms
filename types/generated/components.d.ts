@@ -72,6 +72,32 @@ export interface UiHero extends Struct.ComponentSchema {
   };
 }
 
+export interface UiImage extends Struct.ComponentSchema {
+  collectionName: 'components_ui_images';
+  info: {
+    description: '';
+    displayName: 'Image';
+    icon: 'landscape';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+  };
+}
+
+export interface UiImageMetTitel extends Struct.ComponentSchema {
+  collectionName: 'components_ui_image_met_titels';
+  info: {
+    description: '';
+    displayName: 'Image met titel';
+    icon: 'landscape';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface UiKernwaarden extends Struct.ComponentSchema {
   collectionName: 'components_ui_kernwaardens';
   info: {
@@ -125,6 +151,8 @@ declare module '@strapi/strapi' {
       'elements.list-item-with-icon': ElementsListItemWithIcon;
       'elements.social': ElementsSocial;
       'ui.hero': UiHero;
+      'ui.image': UiImage;
+      'ui.image-met-titel': UiImageMetTitel;
       'ui.kernwaarden': UiKernwaarden;
       'ui.missie-met-statistieken': UiMissieMetStatistieken;
     }

@@ -27,12 +27,25 @@ const populate = {
       "ui.missie-met-statistieken": {
           populate: '*'
       },
+      "ui.image": {
+        populate: {
+          image: {
+            fields: ['url', 'alternativeText']
+          }
+        }
+      },
+      "ui.image-met-titel": {
+        populate: {
+          image: {
+            fields: ['url', 'alternativeText']
+          }
+        }
+      },
     }
   }
 }
 
 module.exports = (config, { strapi }) => {
-  // Add your own logic here.
   return async (ctx, next) => {
     strapi.log.info('In homepage-populate middleware.');
 
