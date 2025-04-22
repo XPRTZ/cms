@@ -43,7 +43,10 @@
       "type": "dynamiczone",
       "components": [
         "ui.hero",
-        "ui.missie-met-statistieken"
+        "ui.missie-met-statistieken",
+        "ui.image",
+        "ui.image-met-titel",
+        "ui.kernwaarden"
       ],
       "required": true,
       "min": 1

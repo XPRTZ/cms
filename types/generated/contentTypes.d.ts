@@ -525,7 +525,13 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
   };
   attributes: {
     components: Schema.Attribute.DynamicZone<
-      ['ui.hero', 'ui.missie-met-statistieken']
+      [
+        'ui.hero',
+        'ui.missie-met-statistieken',
+        'ui.image',
+        'ui.image-met-titel',
+        'ui.kernwaarden',
+      ]
     > &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
