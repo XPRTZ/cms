@@ -41,6 +41,17 @@ const populate = {
           }
         }
       },
+      "ui.kernwaarden": {
+        populate: {
+          items: {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText']
+              }
+            }
+          }
+        }
+      },
     }
   }
 }
