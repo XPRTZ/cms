@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_ui_klant_logo_s",
+  "info": {
+    "displayName": "Klant logo's",
+    "icon": "chartCircle"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "klant": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.list-item-with-icon",
+      "required": true,
+      "min": 1,
+      "max": 5
+    }
+  }
+}

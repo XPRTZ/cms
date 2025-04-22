@@ -531,6 +531,7 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
         'ui.image',
         'ui.image-met-titel',
         'ui.kernwaarden',
+        'ui.klant-logo-s',
       ]
     > &
       Schema.Attribute.Required &
