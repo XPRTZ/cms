@@ -1,0 +1,4 @@
+[role="dialog"] [data-radix-scroll-area-viewport] [role="tabpanel"] > div > div:last-child {
+  position: relative;
+  z-index: 1;
+}
