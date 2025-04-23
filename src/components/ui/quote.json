@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_ui_quotes",
+  "info": {
+    "displayName": "Quote",
+    "icon": "quote"
+  },
+  "options": {},
+  "attributes": {
+    "quote": {
+      "type": "text",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "jobTitle": {
+      "type": "string"
+    }
+  }
+}

@@ -37,8 +37,12 @@
     "components": {
       "type": "dynamiczone",
       "components": [
-        "ui.hero",
-        "ui.kernwaarden"
+        "ui.image",
+        "ui.image-met-titel",
+        "ui.text",
+        "ui.opsomming",
+        "ui.titel",
+        "ui.quote"
       ],
       "pluginOptions": {
         "i18n": {
@@ -72,6 +76,10 @@
     "slug": {
       "type": "uid",
       "targetField": "title_cms",
+      "required": true
+    },
+    "tagline": {
+      "type": "string",
       "required": true
     }
   }

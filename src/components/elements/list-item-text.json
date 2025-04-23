@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_elements_list_item_texts",
+  "info": {
+    "displayName": "List Item text",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

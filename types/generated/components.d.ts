@@ -19,12 +19,24 @@ export interface ElementsButton extends Struct.ComponentSchema {
 export interface ElementsListItem extends Struct.ComponentSchema {
   collectionName: 'components_elements_list_items';
   info: {
-    displayName: 'List Item';
+    description: '';
+    displayName: 'List Item met description';
     icon: 'bulletList';
   };
   attributes: {
     description: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ElementsListItemText extends Struct.ComponentSchema {
+  collectionName: 'components_elements_list_item_texts';
+  info: {
+    displayName: 'List Item text';
+    icon: 'bulletList';
+  };
+  attributes: {
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
 
@@ -163,6 +175,32 @@ export interface UiMissieMetStatistieken extends Struct.ComponentSchema {
   };
 }
 
+export interface UiOpsomming extends Struct.ComponentSchema {
+  collectionName: 'components_ui_opsommings';
+  info: {
+    description: '';
+    displayName: 'Opsomming';
+    icon: 'bulletList';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'elements.list-item-text', true> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface UiQuote extends Struct.ComponentSchema {
+  collectionName: 'components_ui_quotes';
+  info: {
+    displayName: 'Quote';
+    icon: 'quote';
+  };
+  attributes: {
+    jobTitle: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    quote: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 export interface UiTeam extends Struct.ComponentSchema {
   collectionName: 'components_ui_teams';
   info: {
@@ -177,11 +215,36 @@ export interface UiTeam extends Struct.ComponentSchema {
   };
 }
 
+export interface UiText extends Struct.ComponentSchema {
+  collectionName: 'components_ui_texts';
+  info: {
+    displayName: 'Text';
+    icon: 'feather';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+  };
+}
+
+export interface UiTitel extends Struct.ComponentSchema {
+  collectionName: 'components_ui_titels';
+  info: {
+    description: '';
+    displayName: 'Subtitel met text';
+    icon: 'bold';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'elements.button': ElementsButton;
       'elements.list-item': ElementsListItem;
+      'elements.list-item-text': ElementsListItemText;
       'elements.list-item-with-icon': ElementsListItemWithIcon;
       'elements.social': ElementsSocial;
       'ui.hero': UiHero;
@@ -190,7 +253,11 @@ declare module '@strapi/strapi' {
       'ui.kernwaarden': UiKernwaarden;
       'ui.klant-logo-s': UiKlantLogoS;
       'ui.missie-met-statistieken': UiMissieMetStatistieken;
+      'ui.opsomming': UiOpsomming;
+      'ui.quote': UiQuote;
       'ui.team': UiTeam;
+      'ui.text': UiText;
+      'ui.titel': UiTitel;
     }
   }
 }
