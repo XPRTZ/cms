@@ -10,47 +10,92 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "firstname": {
-      "pluginOptions": {},
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "string",
       "required": true,
       "minLength": 3
     },
     "lastname": {
-      "pluginOptions": {},
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "string",
       "minLength": 3,
       "required": true
     },
     "email": {
-      "pluginOptions": {},
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "email",
       "required": true,
       "unique": false,
       "minLength": 3
     },
     "gitHub": {
-      "pluginOptions": {},
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "string",
       "minLength": 3,
       "unique": false
     },
     "biography": {
-      "pluginOptions": {},
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "text"
     },
     "avatar": {
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "jobTitle": {
       "type": "string",
       "required": true,
-      "default": "Software developer"
+      "default": "Software developer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "realTitle": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

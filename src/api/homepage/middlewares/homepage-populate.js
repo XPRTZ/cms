@@ -63,6 +63,17 @@ const populate = {
           }
         }
       },
+      "ui.team": {
+        populate: {
+          members: {
+            populate: {
+              avatar: {
+                fields: ['url', 'alternativeText']
+              }
+            }
+          }
+        }
+      },
     }
   }
 }
