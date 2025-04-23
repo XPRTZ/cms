@@ -163,6 +163,20 @@ export interface UiMissieMetStatistieken extends Struct.ComponentSchema {
   };
 }
 
+export interface UiTeam extends Struct.ComponentSchema {
+  collectionName: 'components_ui_teams';
+  info: {
+    description: '';
+    displayName: 'Team';
+    icon: 'rocket';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    members: Schema.Attribute.Relation<'oneToMany', 'api::author.author'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -176,6 +190,7 @@ declare module '@strapi/strapi' {
       'ui.kernwaarden': UiKernwaarden;
       'ui.klant-logo-s': UiKlantLogoS;
       'ui.missie-met-statistieken': UiMissieMetStatistieken;
+      'ui.team': UiTeam;
     }
   }
 }

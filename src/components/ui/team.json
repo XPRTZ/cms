@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_ui_teams",
+  "info": {
+    "displayName": "Team",
+    "icon": "rocket",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "members": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::author.author"
+    }
+  }
+}

@@ -47,7 +47,8 @@
         "ui.image",
         "ui.image-met-titel",
         "ui.kernwaarden",
-        "ui.klant-logo-s"
+        "ui.klant-logo-s",
+        "ui.team"
       ],
       "required": true,
       "min": 1
