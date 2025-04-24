@@ -1,0 +1,53 @@
+'use strict';
+
+/**
+ * `page-populate` middleware
+ */
+
+const populate = {
+  components: {
+    on: {
+      "ui.text": {
+        fields: ['content'],
+      },
+      "ui.image": {
+        populate: {
+          image: {
+            fields: ['url', 'alternativeText']
+          }
+        }
+      },
+      "ui.image-met-titel": {
+        populate: {
+          image: {
+            fields: ['url', 'alternativeText']
+          }
+        }
+      },
+      "ui.opsomming": {
+        populate: {
+          items: {
+            fields: ['text']
+          }
+        }
+      },
+      "ui.titel": {
+        fields: ['title', 'content'],
+      },
+      "ui.quote": {
+        fields: ['quote', 'name', 'jobTitle'],
+      },
+    }
+  }
+}
+
+module.exports = (config, { strapi }) => {
+  // Add your own logic here.
+  return async (ctx, next) => {
+    strapi.log.info('In page-populate middleware.');
+
+    ctx.query.populate = populate;
+
+    await next();
+  };
+};

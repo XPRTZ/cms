@@ -677,7 +677,16 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    components: Schema.Attribute.DynamicZone<['ui.hero', 'ui.kernwaarden']> &
+    components: Schema.Attribute.DynamicZone<
+      [
+        'ui.image',
+        'ui.image-met-titel',
+        'ui.text',
+        'ui.opsomming',
+        'ui.titel',
+        'ui.quote',
+      ]
+    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -705,6 +714,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
       }> &
       Schema.Attribute.DefaultTo<'dotnet'>;
     slug: Schema.Attribute.UID<'title_cms'> & Schema.Attribute.Required;
+    tagline: Schema.Attribute.String & Schema.Attribute.Required;
     title_cms: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{

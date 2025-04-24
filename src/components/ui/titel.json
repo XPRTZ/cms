@@ -1,8 +1,8 @@
 {
-  "collectionName": "components_elements_list_items",
+  "collectionName": "components_ui_titels",
   "info": {
-    "displayName": "List Item met description",
-    "icon": "bulletList",
+    "displayName": "Subtitel met text",
+    "icon": "bold",
     "description": ""
   },
   "options": {},
@@ -11,8 +11,8 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "string",
+    "content": {
+      "type": "richtext",
       "required": true
     }
   }

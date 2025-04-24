@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_ui_opsommings",
+  "info": {
+    "displayName": "Opsomming",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.list-item-text",
+      "required": true
+    }
+  }
+}
