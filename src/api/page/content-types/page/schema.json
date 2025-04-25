@@ -52,10 +52,7 @@
     },
     "site": {
       "type": "enumeration",
-      "enum": [
-        "cloud",
-        "dotnet"
-      ],
+      "enum": ["cloud", "dotnet"],
       "required": true,
       "default": "dotnet",
       "pluginOptions": {

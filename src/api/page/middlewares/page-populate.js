@@ -7,39 +7,39 @@
 const populate = {
   components: {
     on: {
-      "ui.text": {
+      'ui.text': {
         fields: ['content'],
       },
-      "ui.image": {
+      'ui.image': {
         populate: {
           image: {
-            fields: ['url', 'alternativeText']
-          }
-        }
+            fields: ['url', 'alternativeText'],
+          },
+        },
       },
-      "ui.image-met-titel": {
+      'ui.image-met-titel': {
         populate: {
           image: {
-            fields: ['url', 'alternativeText']
-          }
-        }
+            fields: ['url', 'alternativeText'],
+          },
+        },
       },
-      "ui.opsomming": {
+      'ui.opsomming': {
         populate: {
           items: {
-            fields: ['text']
-          }
-        }
+            fields: ['text'],
+          },
+        },
       },
-      "ui.titel": {
+      'ui.titel': {
         fields: ['title', 'content'],
       },
-      "ui.quote": {
+      'ui.quote': {
         fields: ['quote', 'name', 'jobTitle'],
       },
-    }
-  }
-}
+    },
+  },
+};
 
 module.exports = (config, { strapi }) => {
   // Add your own logic here.

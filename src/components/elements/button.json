@@ -13,12 +13,7 @@
     },
     "variant": {
       "type": "enumeration",
-      "enum": [
-        "primary",
-        "secondary",
-        "button",
-        "link"
-      ]
+      "enum": ["primary", "secondary", "button", "link"]
     },
     "page": {
       "type": "relation",
