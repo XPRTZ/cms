@@ -7,17 +7,13 @@
 const populate = {
   components: {
     on: {
+      'ui.artikelen': {
+        fields: ['title'],
+      },
       'ui.text': {
         fields: ['content'],
       },
-      'ui.image': {
-        populate: {
-          image: {
-            fields: ['url', 'alternativeText'],
-          },
-        },
-      },
-      'ui.image-met-titel': {
+      'ui.page-image': {
         populate: {
           image: {
             fields: ['url', 'alternativeText'],

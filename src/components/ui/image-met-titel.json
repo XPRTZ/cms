@@ -1,8 +1,8 @@
 {
   "collectionName": "components_ui_image_met_titels",
   "info": {
-    "displayName": "Image met titel",
-    "icon": "landscape",
+    "displayName": "Image met titel voor Homepage",
+    "icon": "picture",
     "description": ""
   },
   "options": {},
@@ -15,7 +15,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "description": {
       "type": "text",

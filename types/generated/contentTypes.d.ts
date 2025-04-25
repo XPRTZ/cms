@@ -609,6 +609,7 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
         'ui.kernwaarden',
         'ui.klant-logo-s',
         'ui.team',
+        'ui.artikelen-overzicht',
       ]
     > &
       Schema.Attribute.Required &
@@ -679,12 +680,12 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   attributes: {
     components: Schema.Attribute.DynamicZone<
       [
-        'ui.image',
-        'ui.image-met-titel',
         'ui.text',
         'ui.opsomming',
         'ui.titel',
         'ui.quote',
+        'ui.page-image',
+        'ui.artikelen',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

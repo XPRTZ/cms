@@ -1,8 +1,9 @@
 {
   "collectionName": "components_ui_texts",
   "info": {
-    "displayName": "Text",
-    "icon": "feather"
+    "displayName": "Tekst",
+    "icon": "feather",
+    "description": ""
   },
   "options": {},
   "attributes": {

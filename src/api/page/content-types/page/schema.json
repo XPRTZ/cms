@@ -37,12 +37,12 @@
     "components": {
       "type": "dynamiczone",
       "components": [
-        "ui.image",
-        "ui.image-met-titel",
         "ui.text",
         "ui.opsomming",
         "ui.titel",
-        "ui.quote"
+        "ui.quote",
+        "ui.page-image",
+        "ui.artikelen"
       ],
       "pluginOptions": {
         "i18n": {
@@ -52,7 +52,10 @@
     },
     "site": {
       "type": "enumeration",
-      "enum": ["cloud", "dotnet"],
+      "enum": [
+        "cloud",
+        "dotnet"
+      ],
       "required": true,
       "default": "dotnet",
       "pluginOptions": {
