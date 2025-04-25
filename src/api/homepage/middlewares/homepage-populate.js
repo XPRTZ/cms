@@ -7,76 +7,76 @@
 const populate = {
   components: {
     on: {
-      "ui.hero": {
+      'ui.hero': {
         populate: {
           CTO: {
             populate: {
               page: {
-                fields: ['title_website', 'slug']
-              }
-            }
+                fields: ['title_website', 'slug'],
+              },
+            },
           },
           link: {
-            populate: '*'
+            populate: '*',
           },
           images: {
-            fields: ['url', 'alternativeText']
-          }
-        }
+            fields: ['url', 'alternativeText'],
+          },
+        },
       },
-      "ui.missie-met-statistieken": {
-          populate: '*'
+      'ui.missie-met-statistieken': {
+        populate: '*',
       },
-      "ui.image": {
+      'ui.image': {
         populate: {
           image: {
-            fields: ['url', 'alternativeText']
-          }
-        }
+            fields: ['url', 'alternativeText'],
+          },
+        },
       },
-      "ui.image-met-titel": {
+      'ui.image-met-titel': {
         populate: {
           image: {
-            fields: ['url', 'alternativeText']
-          }
-        }
+            fields: ['url', 'alternativeText'],
+          },
+        },
       },
-      "ui.kernwaarden": {
+      'ui.kernwaarden': {
         populate: {
           items: {
             populate: {
               image: {
-                fields: ['url', 'alternativeText']
-              }
-            }
-          }
-        }
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
       },
-      "ui.klant-logo-s": {
+      'ui.klant-logo-s': {
         populate: {
           klant: {
             populate: {
               image: {
-                fields: ['url', 'alternativeText']
-              }
-            }
-          }
-        }
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
       },
-      "ui.team": {
+      'ui.team': {
         populate: {
           members: {
             populate: {
               avatar: {
-                fields: ['url', 'alternativeText']
-              }
-            }
-          }
-        }
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
       },
-    }
-  }
-}
+    },
+  },
+};
 
 module.exports = (config, { strapi }) => {
   return async (ctx, next) => {
