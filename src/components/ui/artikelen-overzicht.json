@@ -2,12 +2,17 @@
   "collectionName": "components_ui_artikelen_overzichts",
   "info": {
     "displayName": "Artikelen overzicht",
-    "icon": "book"
+    "icon": "book",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
       "required": true
     }
   }

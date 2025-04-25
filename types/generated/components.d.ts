@@ -82,10 +82,12 @@ export interface UiArtikelen extends Struct.ComponentSchema {
 export interface UiArtikelenOverzicht extends Struct.ComponentSchema {
   collectionName: 'components_ui_artikelen_overzichts';
   info: {
+    description: '';
     displayName: 'Artikelen overzicht';
     icon: 'book';
   };
   attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
