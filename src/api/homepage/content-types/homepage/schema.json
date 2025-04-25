@@ -48,7 +48,8 @@
         "ui.image-met-titel",
         "ui.kernwaarden",
         "ui.klant-logo-s",
-        "ui.team"
+        "ui.team",
+        "ui.artikelen-overzicht"
       ],
       "required": true,
       "min": 1
@@ -60,7 +61,10 @@
         }
       },
       "type": "enumeration",
-      "enum": ["cloud", "dotnet"],
+      "enum": [
+        "cloud",
+        "dotnet"
+      ],
       "required": true,
       "default": "dotnet"
     }

@@ -68,6 +68,28 @@ export interface ElementsSocial extends Struct.ComponentSchema {
   };
 }
 
+export interface UiArtikelen extends Struct.ComponentSchema {
+  collectionName: 'components_ui_artikelens';
+  info: {
+    displayName: 'Artikelen';
+    icon: 'book';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface UiArtikelenOverzicht extends Struct.ComponentSchema {
+  collectionName: 'components_ui_artikelen_overzichts';
+  info: {
+    displayName: 'Artikelen overzicht';
+    icon: 'book';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface UiHero extends Struct.ComponentSchema {
   collectionName: 'components_ui_heroes';
   info: {
@@ -88,8 +110,8 @@ export interface UiImage extends Struct.ComponentSchema {
   collectionName: 'components_ui_images';
   info: {
     description: '';
-    displayName: 'Image';
-    icon: 'landscape';
+    displayName: 'Image voor Homepage';
+    icon: 'picture';
   };
   attributes: {
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
@@ -100,8 +122,8 @@ export interface UiImageMetTitel extends Struct.ComponentSchema {
   collectionName: 'components_ui_image_met_titels';
   info: {
     description: '';
-    displayName: 'Image met titel';
-    icon: 'landscape';
+    displayName: 'Image met titel voor Homepage';
+    icon: 'picture';
   };
   attributes: {
     description: Schema.Attribute.Text & Schema.Attribute.Required;
@@ -188,6 +210,20 @@ export interface UiOpsomming extends Struct.ComponentSchema {
   };
 }
 
+export interface UiPageImage extends Struct.ComponentSchema {
+  collectionName: 'components_ui_page_images';
+  info: {
+    description: '';
+    displayName: 'Image voor Page';
+    icon: 'picture';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface UiQuote extends Struct.ComponentSchema {
   collectionName: 'components_ui_quotes';
   info: {
@@ -218,7 +254,8 @@ export interface UiTeam extends Struct.ComponentSchema {
 export interface UiText extends Struct.ComponentSchema {
   collectionName: 'components_ui_texts';
   info: {
-    displayName: 'Text';
+    description: '';
+    displayName: 'Tekst';
     icon: 'feather';
   };
   attributes: {
@@ -230,7 +267,7 @@ export interface UiTitel extends Struct.ComponentSchema {
   collectionName: 'components_ui_titels';
   info: {
     description: '';
-    displayName: 'Subtitel met text';
+    displayName: 'Subtitel met tekst';
     icon: 'bold';
   };
   attributes: {
@@ -247,6 +284,8 @@ declare module '@strapi/strapi' {
       'elements.list-item-text': ElementsListItemText;
       'elements.list-item-with-icon': ElementsListItemWithIcon;
       'elements.social': ElementsSocial;
+      'ui.artikelen': UiArtikelen;
+      'ui.artikelen-overzicht': UiArtikelenOverzicht;
       'ui.hero': UiHero;
       'ui.image': UiImage;
       'ui.image-met-titel': UiImageMetTitel;
@@ -254,6 +293,7 @@ declare module '@strapi/strapi' {
       'ui.klant-logo-s': UiKlantLogoS;
       'ui.missie-met-statistieken': UiMissieMetStatistieken;
       'ui.opsomming': UiOpsomming;
+      'ui.page-image': UiPageImage;
       'ui.quote': UiQuote;
       'ui.team': UiTeam;
       'ui.text': UiText;

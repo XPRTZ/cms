@@ -74,6 +74,9 @@ const populate = {
           },
         },
       },
+      'ui.artikelen-overzicht': {
+        fields: ['title'],
+      },
     },
   },
 };
