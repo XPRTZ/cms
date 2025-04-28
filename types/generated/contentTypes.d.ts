@@ -560,12 +560,14 @@ export interface ApiGlobalSettingGlobalSetting
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    gemeente: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::global-setting.global-setting'
     >;
     pages: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
+    postcode: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     site: Schema.Attribute.Enumeration<['cloud', 'dotnet']> &
       Schema.Attribute.Required &
@@ -581,6 +583,7 @@ export interface ApiGlobalSettingGlobalSetting
           localized: false;
         };
       }>;
+    straat: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

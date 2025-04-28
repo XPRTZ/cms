@@ -55,6 +55,18 @@
         "videos",
         "audios"
       ]
+    },
+    "straat": {
+      "type": "string",
+      "required": true
+    },
+    "postcode": {
+      "type": "string",
+      "required": true
+    },
+    "gemeente": {
+      "type": "string",
+      "required": true
     }
   }
 }
