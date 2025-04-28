@@ -56,10 +56,12 @@ export interface ElementsListItemWithIcon extends Struct.ComponentSchema {
 export interface ElementsSocial extends Struct.ComponentSchema {
   collectionName: 'components_elements_socials';
   info: {
+    description: '';
     displayName: 'Social';
     icon: 'heart';
   };
   attributes: {
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     isEnabled: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;

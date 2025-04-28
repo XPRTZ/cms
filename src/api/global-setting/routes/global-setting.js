@@ -1,9 +1,11 @@
 'use strict';
 
-/**
- * global-setting router
- */
-
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::global-setting.global-setting');
+module.exports = createCoreRouter('api::global-setting.global-setting', {
+  config: {
+    find: {
+      middlewares: ['api::global-setting.global-setting-populate'],
+    },
+  },
+});

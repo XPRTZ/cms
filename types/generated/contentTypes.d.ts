@@ -553,6 +553,10 @@ export interface ApiGlobalSettingGlobalSetting
     };
   };
   attributes: {
+    algemeneVoorwaarden: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -571,7 +575,7 @@ export interface ApiGlobalSettingGlobalSetting
         };
       }> &
       Schema.Attribute.DefaultTo<'dotnet'>;
-    Socials: Schema.Attribute.Component<'elements.social', true> &
+    socials: Schema.Attribute.Component<'elements.social', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: false;

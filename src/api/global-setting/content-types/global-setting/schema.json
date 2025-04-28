@@ -28,11 +28,14 @@
         }
       },
       "type": "enumeration",
-      "enum": ["cloud", "dotnet"],
+      "enum": [
+        "cloud",
+        "dotnet"
+      ],
       "default": "dotnet",
       "required": true
     },
-    "Socials": {
+    "socials": {
       "type": "component",
       "repeatable": true,
       "pluginOptions": {
@@ -41,6 +44,17 @@
         }
       },
       "component": "elements.social"
+    },
+    "algemeneVoorwaarden": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
