@@ -8,13 +8,13 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "format": "prettier . --write",
-    "postinstall": "yarn format"
+    "format": "prettier . --write"
   },
   "devDependencies": {
     "prettier": "^3.3.3"
   },
   "dependencies": {
+    "@azure/identity": "^4.9.1",
     "@strapi/plugin-cloud": "5.12.6",
     "@strapi/plugin-graphql": "^5.3.0",
     "@strapi/plugin-users-permissions": "5.12.6",
@@ -28,7 +28,7 @@
     "styled-components": "^6.0.0"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Maarten Louage"
   },
   "strapi": {
     "uuid": "260e7c98-fa4d-4377-a8b3-a4b5241d9e8b"
@@ -37,6 +37,5 @@
     "node": ">=20.0.0 <=22.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT",
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "license": "MIT"
 }
