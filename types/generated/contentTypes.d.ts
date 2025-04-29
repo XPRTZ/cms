@@ -569,7 +569,7 @@ export interface ApiGlobalSettingGlobalSetting
     pages: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     postcode: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    site: Schema.Attribute.Enumeration<['cloud', 'dotnet']> &
+    site: Schema.Attribute.Enumeration<['cloud', 'dotnet', 'stratus']> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -619,18 +619,11 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
         'ui.artikelen-overzicht',
       ]
     > &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
-      }> &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      >;
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -647,7 +640,7 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
       'api::homepage.homepage'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    site: Schema.Attribute.Enumeration<['cloud', 'dotnet']> &
+    site: Schema.Attribute.Enumeration<['cloud', 'dotnet', 'stratus']> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -713,7 +706,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     publishedAt: Schema.Attribute.DateTime;
-    site: Schema.Attribute.Enumeration<['cloud', 'dotnet']> &
+    site: Schema.Attribute.Enumeration<['cloud', 'dotnet', 'stratus']> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

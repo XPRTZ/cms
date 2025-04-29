@@ -54,7 +54,8 @@
       "type": "enumeration",
       "enum": [
         "cloud",
-        "dotnet"
+        "dotnet",
+        "stratus"
       ],
       "required": true,
       "default": "dotnet",

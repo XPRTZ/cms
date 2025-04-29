@@ -51,8 +51,7 @@
         "ui.team",
         "ui.artikelen-overzicht"
       ],
-      "required": true,
-      "min": 1
+      "required": false
     },
     "site": {
       "pluginOptions": {
@@ -63,7 +62,8 @@
       "type": "enumeration",
       "enum": [
         "cloud",
-        "dotnet"
+        "dotnet",
+        "stratus"
       ],
       "required": true,
       "default": "dotnet"

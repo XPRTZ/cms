@@ -6,7 +6,7 @@
 
 const populate = {
   pages: {
-    fields: ['title_website', 'slug']
+    fields: ['title_website', 'slug'],
   },
   algemeneVoorwaarden: {
     fields: ['url'],
@@ -17,9 +17,8 @@ const populate = {
         fields: ['url'],
       },
     },
-  }
-}
-
+  },
+};
 
 module.exports = (config, { strapi }) => {
   return async (ctx, next) => {
