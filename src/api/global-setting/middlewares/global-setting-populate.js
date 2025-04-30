@@ -5,6 +5,8 @@
  */
 
 const populate = {
+  createdBy: true,
+  updatedBy: true,
   pages: {
     fields: ['title_website', 'slug']
   },

@@ -379,6 +379,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: true;
+    populateCreatorFields: true;
   };
   pluginOptions: {
     i18n: {
@@ -394,8 +395,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         };
       }>;
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
     date: Schema.Attribute.Date &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -434,8 +434,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         };
       }>;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
   };
 }
 
@@ -449,6 +448,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: true;
+    populateCreatorFields: true;
   };
   pluginOptions: {
     i18n: {
@@ -470,8 +470,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
         };
       }>;
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -530,8 +529,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
         };
       }>;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
   };
 }
 
@@ -546,6 +544,7 @@ export interface ApiGlobalSettingGlobalSetting
   };
   options: {
     draftAndPublish: true;
+    populateCreatorFields: true;
   };
   pluginOptions: {
     i18n: {
@@ -558,8 +557,7 @@ export interface ApiGlobalSettingGlobalSetting
     > &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
     gemeente: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
@@ -585,8 +583,7 @@ export interface ApiGlobalSettingGlobalSetting
       }>;
     straat: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
   };
 }
 
@@ -600,6 +597,7 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: true;
+    populateCreatorFields: true;
   };
   pluginOptions: {
     i18n: {
@@ -632,8 +630,7 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
         number
       >;
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
     description: Schema.Attribute.Text &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -663,8 +660,7 @@ export interface ApiHomepageHomepage extends Struct.CollectionTypeSchema {
         };
       }>;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
   };
 }
 
@@ -678,6 +674,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: true;
+    populateCreatorFields: true;
   };
   pluginOptions: {
     i18n: {
@@ -701,8 +698,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         };
       }>;
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
     description: Schema.Attribute.Text &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -738,8 +734,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         };
       }>;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
   };
 }
 
@@ -753,20 +748,19 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: true;
+    populateCreatorFields: true;
   };
   attributes: {
     articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
   };
 }
 
