@@ -5,6 +5,8 @@
  */
 
 const populate = {
+  createdBy: true,
+  updatedBy: true,
   components: {
     on: {
       'ui.hero': {
