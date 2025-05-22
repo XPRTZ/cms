@@ -33,7 +33,8 @@ curl -fsSL https://get.pnpm.io/install.sh | sh -
 4. Modify some values in the .env file
    - `ADMINPASSWORD`: The password of the admin user, should not contain hashes. The default value in the sample contains a hash, so it will not work.
    - `STRAPIPASSWORD`: The password of the strapi user, should not contain hashes.
-   - `AZURE_ENDPOINT`: The endpoint of the Azure Communication Services.
+   - `AZURE_ENDPOINT`: The endpoint of the Azure Communication Services. Go to the Azure portal and get the key there or ask Maarten.
+
 5. Start the containers
    ```bash
    docker compose up
