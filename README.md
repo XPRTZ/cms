@@ -1,12 +1,24 @@
 # 🚀 Getting started
 
 ## Prerequisites
+- WSL
 - Docker or equivalent container runtime
 - Docker Compose
+- Git
+- Node 22
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+sudo bash nodesource_setup.sh
+sudo apt install -y nodejs
+```
+
 - pnpm
+```bash
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+```
 
 ## Getting started
-1. Clone the repository
+1. Clone the repository in WSL
    ```bash
    git clone https://github.com/xprtz/cms.git
    ````
