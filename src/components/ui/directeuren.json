@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_ui_directeurens",
+  "info": {
+    "displayName": "Directeuren",
+    "icon": "alien",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "directeuren": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::author.author"
+    }
+  }
+}

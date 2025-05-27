@@ -8,8 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true,
-    "populateCreatorFields": true
+    "draftAndPublish": true
   },
   "pluginOptions": {
     "i18n": {
@@ -43,7 +42,8 @@
         "ui.titel",
         "ui.quote",
         "ui.page-image",
-        "ui.artikelen"
+        "ui.artikelen",
+        "ui.directeuren"
       ],
       "pluginOptions": {
         "i18n": {
