@@ -1,0 +1,77 @@
+name: Azure File Share to Blob Sync
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+env:
+  STORAGE_ACCOUNT_NAME: stxprtzbvcmsprvvwhglcnmk
+  FILE_SHARE_NAME: upload
+  BLOB_CONTAINER_NAME: media
+  SAS_SECRET_NAME: MEDIA-SAS
+
+jobs:
+  sync-storage:
+    runs-on: ubuntu-latest
+    environment: preview
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Get SAS Token from Azure Key Vault
+        id: get-sas-token
+        run: |
+          # Retrieve the SAS token using Azure CLI and store it as a workflow environment variable.
+          # The Service Principal used by the 'Azure Login' step must have 'Key Vault Secrets User' role on the Key Vault.
+          STORAGE_SAS_TOKEN=$(az keyvault secret show \
+            --name ${{ env.SAS_SECRET_NAME }} \
+            --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} \
+            --query value -o tsv)
+
+          # Export the secret as an environment variable for subsequent steps in this job.
+          # This makes it accessible via ${{ env.STORAGE_SAS_TOKEN }}
+          echo "STORAGE_SAS_TOKEN=$STORAGE_SAS_TOKEN" >> $GITHUB_ENV
+        env:
+          AZURE_KEYVAULT_NAME: ${{ secrets.AZURE_KEYVAULT_NAME }}
+
+      - name: Install AzCopy
+        run: |
+          # Download the latest AzCopy v10 for Linux
+          wget https://aka.ms/downloadazcopy-v10-linux
+          tar -xvf downloadazcopy-v10-linux
+          # The extracted folder name might vary slightly (e.g., azcopy_linux_amd64_10.x.x)
+          # Find the executable and move it to a PATH directory
+          AZCOPY_DIR=$(find . -maxdepth 1 -type d -name "azcopy_linux_amd64_*" | head -n 1)
+          if [ -z "$AZCOPY_DIR" ]; then
+            echo "AzCopy directory not found!"
+            exit 1
+          fi
+          sudo cp "$AZCOPY_DIR/azcopy" /usr/local/bin/azcopy
+          sudo chmod +x /usr/local/bin/azcopy
+          azcopy --version
+
+      - name: Run AzCopy Sync
+        run: |
+          # Construct the full source and destination URLs using the retrieved SAS token
+          # The SAS token is now available as an environment variable: ${{ env.STORAGE_SAS_TOKEN }}
+          SOURCE_URL="https://${{ env.STORAGE_ACCOUNT_NAME }}.file.core.windows.net/${{ env.FILE_SHARE_NAME }}?${{ env.STORAGE_SAS_TOKEN }}"
+          DESTINATION_URL="https://${{ env.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ env.BLOB_CONTAINER_NAME }}?${{ env.STORAGE_SAS_TOKEN }}"
+
+          echo "Starting AzCopy sync from File Share to Blob Storage..."
+          echo "Source: ${{ env.STORAGE_ACCOUNT_NAME }}.file.core.windows.net/${{ env.FILE_SHARE_NAME }}"
+          echo "Destination: ${{ env.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ env.BLOB_CONTAINER_NAME }}"
+
+          # Execute the azcopy sync command
+          azcopy sync "$SOURCE_URL" "$DESTINATION_URL" --recursive=true --overwrite=ifSourceNewer
+
+          echo "AzCopy sync completed."
