@@ -72,6 +72,6 @@ jobs:
           echo "Destination: ${{ env.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ env.BLOB_CONTAINER_NAME }}"
 
           # Execute the azcopy sync command
-          azcopy sync "$SOURCE_URL" "$DESTINATION_URL" --recursive=true --overwrite=ifSourceNewer
+          azcopy sync "$SOURCE_URL" "$DESTINATION_URL" --recursive=true
 
           echo "AzCopy sync completed."
