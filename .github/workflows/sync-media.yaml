@@ -17,7 +17,7 @@ env:
 jobs:
   sync-storage:
     runs-on: ubuntu-latest
-    environment: preview
+    environment: production
 
     steps:
       - name: Checkout repository
