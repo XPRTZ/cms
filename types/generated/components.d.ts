@@ -94,6 +94,18 @@ export interface UiArtikelenOverzicht extends Struct.ComponentSchema {
   };
 }
 
+export interface UiDirecteuren extends Struct.ComponentSchema {
+  collectionName: 'components_ui_directeurens';
+  info: {
+    description: '';
+    displayName: 'Directeuren';
+    icon: 'alien';
+  };
+  attributes: {
+    directeuren: Schema.Attribute.Relation<'oneToMany', 'api::author.author'>;
+  };
+}
+
 export interface UiHero extends Struct.ComponentSchema {
   collectionName: 'components_ui_heroes';
   info: {
@@ -290,6 +302,7 @@ declare module '@strapi/strapi' {
       'elements.social': ElementsSocial;
       'ui.artikelen': UiArtikelen;
       'ui.artikelen-overzicht': UiArtikelenOverzicht;
+      'ui.directeuren': UiDirecteuren;
       'ui.hero': UiHero;
       'ui.image': UiImage;
       'ui.image-met-titel': UiImageMetTitel;

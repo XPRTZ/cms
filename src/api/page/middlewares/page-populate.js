@@ -5,8 +5,6 @@
  */
 
 const populate = {
-  createdBy: true,
-  updatedBy: true,
   components: {
     on: {
       'ui.artikelen': {
@@ -34,6 +32,17 @@ const populate = {
       },
       'ui.quote': {
         fields: ['quote', 'name', 'jobTitle'],
+      },
+      'ui.directeuren': {
+        populate: {
+          directeuren: {
+            populate: {
+              avatar: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
       },
     },
   },
