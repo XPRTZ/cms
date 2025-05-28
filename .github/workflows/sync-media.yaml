@@ -2,6 +2,10 @@ name: Azure File Share to Blob Sync
 
 on:
   workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 env:
   STORAGE_ACCOUNT_NAME: stxprtzbvcmsprvvwhglcnmk
   FILE_SHARE_NAME: upload
@@ -11,10 +15,7 @@ env:
 jobs:
   sync-storage:
     runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write
-      contents: read
+    environment: preview
 
     steps:
       - name: Checkout repository
