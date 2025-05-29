@@ -9,10 +9,12 @@ permissions:
   id-token: write
   contents: read
 env:
-  STORAGE_ACCOUNT_NAME: ${{ vars.STORAGE_ACCOUNT_NAME }}
+  STORAGE_ACCOUNT_NAME_SOURCE: ${{ vars.STORAGE_ACCOUNT_NAME_SOURCE }}
+  STORAGE_ACCOUNT_NAME_DESTINATION: ${{ vars.STORAGE_ACCOUNT_NAME_DESTINATION }}
   FILE_SHARE_NAME: upload
   BLOB_CONTAINER_NAME: media
-  SAS_SECRET_NAME: MEDIA-SAS
+  FILE_SAS_SECRET_NAME: FILE-SAS
+  BLOB_SAS_SECRET_NAME: BLOB-SAS
 
 jobs:
   sync-storage:
@@ -30,15 +32,22 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Get SAS Token from Azure Key Vault
+      - name: Get SAS tokens from Azure Key Vault
         id: get-sas-token
         run: |
-          STORAGE_SAS_TOKEN=$(az keyvault secret show \
-            --name ${{ env.SAS_SECRET_NAME }} \
+          FILE_SAS_TOKEN=$(az keyvault secret show \
+            --name ${{ env.FILE_SAS_SECRET_NAME }} \
             --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} \
             --query value -o tsv)
 
-          echo "STORAGE_SAS_TOKEN=$STORAGE_SAS_TOKEN" >> $GITHUB_ENV
+          echo "FILE_SAS_TOKEN=$FILE_SAS_TOKEN" >> $GITHUB_ENV
+
+          BLOB_SAS_TOKEN=$(az keyvault secret show \
+            --name ${{ env.BLOB_SAS_SECRET_NAME }} \
+            --vault-name ${{ secrets.AZURE_KEYVAULT_NAME }} \
+            --query value -o tsv)
+
+          echo "BLOB_SAS_TOKEN=$BLOB_SAS_TOKEN" >> $GITHUB_ENV
         env:
           AZURE_KEYVAULT_NAME: ${{ secrets.AZURE_KEYVAULT_NAME }}
 
@@ -57,12 +66,12 @@ jobs:
 
       - name: Run AzCopy Sync
         run: |
-          SOURCE_URL="https://${{ env.STORAGE_ACCOUNT_NAME }}.file.core.windows.net/${{ env.FILE_SHARE_NAME }}?${{ env.STORAGE_SAS_TOKEN }}"
-          DESTINATION_URL="https://${{ env.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ env.BLOB_CONTAINER_NAME }}?${{ env.STORAGE_SAS_TOKEN }}"
+          SOURCE_URL="https://${{ env.STORAGE_ACCOUNT_NAME_SOURCE }}.file.core.windows.net/${{ env.FILE_SHARE_NAME }}?${{ env.FILE_SAS_TOKEN }}"
+          DESTINATION_URL="https://${{ env.STORAGE_ACCOUNT_NAME_DESTINATION }}.blob.core.windows.net/${{ env.BLOB_CONTAINER_NAME }}?${{ env.BLOB_SAS_TOKEN }}"
 
           echo "Starting AzCopy sync from File Share to Blob Storage..."
-          echo "Source: ${{ env.STORAGE_ACCOUNT_NAME }}.file.core.windows.net/${{ env.FILE_SHARE_NAME }}"
-          echo "Destination: ${{ env.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ env.BLOB_CONTAINER_NAME }}"
+          echo "Source: ${{ env.STORAGE_ACCOUNT_NAME_SOURCE }}.file.core.windows.net/${{ env.FILE_SHARE_NAME }}"
+          echo "Destination: ${{ env.STORAGE_ACCOUNT_NAME_DESTINATION }}.blob.core.windows.net/${{ env.BLOB_CONTAINER_NAME }}"
 
           azcopy sync "$SOURCE_URL" "$DESTINATION_URL" --recursive=true
 
