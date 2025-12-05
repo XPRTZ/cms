@@ -14,10 +14,6 @@ var resourceGroupName = 'rg-${defaultName}'
 var containerAppIdentityName = 'id-${defaultName}'
 var keyVaultName = 'kv-${defaultName}-${environmentShort}'
 var databaseServerName = 'pgsql-xprtzbv-cms-${environmentShort}'
-var managementResourceGroup = az.resourceGroup(
-  sharedValues.subscriptionIds.common,
-  sharedValues.resourceGroups.management
-)
 var infrastructureResourceGroup = az.resourceGroup(
   sharedValues.subscriptionIds.common,
   sharedValues.resourceGroups.infrastructure

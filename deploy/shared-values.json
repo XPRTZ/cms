@@ -9,7 +9,6 @@
     }
   },
   "resourceGroups": {
-    "infrastructure": "rg-xprtzbv-infrastructure",
-    "management": "xprtz-mgmt"
+    "infrastructure": "rg-xprtzbv-infrastructure"
   }
 }
