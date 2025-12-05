@@ -73,7 +73,7 @@ module frontdoorSettings 'modules/frontdoor.bicep' = {
 }
 
 module dns 'modules/dns.bicep' = {
-  scope: managementResourceGroup
+  scope: infrastructureResourceGroup
   name: 'Deploy-Dns'
   params: {
     origin: frontdoorSettings.outputs.frontDoorCustomDomainHost
