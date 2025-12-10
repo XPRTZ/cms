@@ -8,24 +8,32 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "devDependencies": {
-    "prettier": "^3.3.3"
+    "prettier": "^3.7.4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   },
   "dependencies": {
-    "@azure/identity": "^4.9.1",
-    "@strapi/plugin-cloud": "5.12.6",
+    "@azure/identity": "^4.13.0",
+    "@strapi/plugin-cloud": "5.31.3",
     "@strapi/plugin-graphql": "^5.3.0",
-    "@strapi/plugin-users-permissions": "5.12.6",
-    "@strapi/strapi": "5.12.6",
-    "better-sqlite3": "11.3.0",
+    "@strapi/plugin-users-permissions": "5.31.3",
+    "@strapi/strapi": "5.31.3",
+    "better-sqlite3": "12.4.1",
     "pg": "^8.11.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
-    "strapi-provider-email-azure": "^1.0.3",
-    "styled-components": "^6.0.0"
+    "strapi-provider-email-azure": "^1.0.4",
+    "styled-components": "^6.0.0",
+    "fs-extra": "^10.0.0",
+    "mime-types": "^2.1.27"
   },
   "author": {
     "name": "Maarten Louage"
@@ -34,11 +42,11 @@
     "uuid": "260e7c98-fa4d-4377-a8b3-a4b5241d9e8b"
   },
   "engines": {
-    "node": ">=20.0.0 <=22.x.x",
+    "node": ">=20.0.0 <=24.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT",
   "volta": {
-    "node": "22.15.0"
+    "node": "24.11.1"
   }
 }
