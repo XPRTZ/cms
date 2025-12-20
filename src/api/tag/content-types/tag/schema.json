@@ -8,9 +8,9 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true,
-    "populateCreatorFields": true
+    "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -20,6 +20,12 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
+      "mappedBy": "tags"
+    },
+    "radar_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::radar-item.radar-item",
       "mappedBy": "tags"
     }
   }

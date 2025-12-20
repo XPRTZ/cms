@@ -41,7 +41,10 @@
     },
     "site": {
       "type": "enumeration",
-      "enum": ["dotnet", "cloud"],
+      "enum": [
+        "dotnet",
+        "cloud"
+      ],
       "required": true,
       "default": "dotnet",
       "pluginOptions": {
@@ -68,7 +71,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": true
