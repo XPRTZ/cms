@@ -753,6 +753,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'ui.page-image',
         'ui.artikelen',
         'ui.directeuren',
+        'ui.technology-radar',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

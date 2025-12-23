@@ -18,24 +18,29 @@
   "attributes": {
     "title_website": {
       "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "description": {
       "type": "text",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "components": {
       "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "components": [
         "ui.text",
         "ui.opsomming",
@@ -43,35 +48,31 @@
         "ui.quote",
         "ui.page-image",
         "ui.artikelen",
-        "ui.directeuren"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+        "ui.directeuren",
+        "ui.technology-radar"
+      ]
     },
     "site": {
       "type": "enumeration",
-      "enum": [
-        "cloud",
-        "dotnet"
-      ],
-      "required": true,
-      "default": "dotnet",
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      }
+      },
+      "required": true,
+      "default": "dotnet",
+      "enum": [
+        "cloud",
+        "dotnet"
+      ]
     },
     "title_cms": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "string",
       "required": true
     },
     "slug": {
