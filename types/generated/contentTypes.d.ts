@@ -830,7 +830,7 @@ export interface ApiRadarItemRadarItem extends Struct.CollectionTypeSchema {
     pros: Schema.Attribute.Component<'elements.list-item', true>;
     publishedAt: Schema.Attribute.DateTime;
     quadrant: Schema.Attribute.Enumeration<
-      ['Techniques', 'Tools', 'Platforms', 'Languages & Frameworks']
+      ['Technieken', 'Tools', 'Platformen', 'Talen & Frameworks']
     > &
       Schema.Attribute.Required;
     ring: Schema.Attribute.Enumeration<['Adopt', 'Trial', 'Assess', 'Hold']> &
