@@ -44,6 +44,9 @@ const populate = {
           },
         },
       },
+      'ui.technology-radar': {
+        fields: ['title'],
+      },
     },
   },
 };

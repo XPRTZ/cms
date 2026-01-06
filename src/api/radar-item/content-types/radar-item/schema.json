@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "radar_items",
+  "info": {
+    "singularName": "radar-item",
+    "pluralName": "radar-items",
+    "displayName": "Radar Item"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "quadrant": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Technieken",
+        "Tools",
+        "Platformen",
+        "Talen & Frameworks"
+      ]
+    },
+    "ring": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Adopt",
+        "Trial",
+        "Assess",
+        "Hold"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "pros": {
+      "type": "component",
+      "component": "elements.list-item",
+      "repeatable": true
+    },
+    "cons": {
+      "type": "component",
+      "component": "elements.list-item",
+      "repeatable": true
+    },
+    "conclusion": {
+      "type": "richtext"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "radar_items"
+    }
+  }
+}

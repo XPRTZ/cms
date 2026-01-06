@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_ui_technology_radars",
+  "info": {
+    "displayName": "Technology Radar",
+    "icon": "globe"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -753,6 +753,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'ui.page-image',
         'ui.artikelen',
         'ui.directeuren',
+        'ui.technology-radar',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -803,6 +804,46 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRadarItemRadarItem extends Struct.CollectionTypeSchema {
+  collectionName: 'radar_items';
+  info: {
+    displayName: 'Radar Item';
+    pluralName: 'radar-items';
+    singularName: 'radar-item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    conclusion: Schema.Attribute.RichText;
+    cons: Schema.Attribute.Component<'elements.list-item', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::radar-item.radar-item'
+    > &
+      Schema.Attribute.Private;
+    pros: Schema.Attribute.Component<'elements.list-item', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    quadrant: Schema.Attribute.Enumeration<
+      ['Technieken', 'Tools', 'Platformen', 'Talen & Frameworks']
+    > &
+      Schema.Attribute.Required;
+    ring: Schema.Attribute.Enumeration<['Adopt', 'Trial', 'Assess', 'Hold']> &
+      Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTagTag extends Struct.CollectionTypeSchema {
   collectionName: 'tags';
   info: {
@@ -813,19 +854,24 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: true;
-    populateCreatorFields: true;
   };
   attributes: {
     articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    radar_items: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::radar-item.radar-item'
+    >;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1344,6 +1390,7 @@ declare module '@strapi/strapi' {
       'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::page.page': ApiPagePage;
+      'api::radar-item.radar-item': ApiRadarItemRadarItem;
       'api::tag.tag': ApiTagTag;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

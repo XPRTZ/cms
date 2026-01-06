@@ -267,6 +267,17 @@ export interface UiTeam extends Struct.ComponentSchema {
   };
 }
 
+export interface UiTechnologyRadar extends Struct.ComponentSchema {
+  collectionName: 'components_ui_technology_radars';
+  info: {
+    displayName: 'Technology Radar';
+    icon: 'globe';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface UiText extends Struct.ComponentSchema {
   collectionName: 'components_ui_texts';
   info: {
@@ -313,6 +324,7 @@ declare module '@strapi/strapi' {
       'ui.page-image': UiPageImage;
       'ui.quote': UiQuote;
       'ui.team': UiTeam;
+      'ui.technology-radar': UiTechnologyRadar;
       'ui.text': UiText;
       'ui.titel': UiTitel;
     }
